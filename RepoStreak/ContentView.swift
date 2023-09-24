@@ -9,20 +9,34 @@ import SwiftUI
 
 struct ContentView: View {
     private let repoLink = "https://api.github.com/repos/admi126n/100daysofswiftui"
+    private let repoPushed = "Coding done for today"
+    private let repoNotPushed = "Go code!"
     
     @State private var repoPushedToday = false
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-                .foregroundStyle(repoPushedToday ? .green : .red)
-            
-            Button("Refresh") { performURLRequest() }
+        NavigationStack {
+            VStack {
+                Image(systemName: "flame")
+                    .font(.system(size: 70))
+                    .foregroundStyle(repoPushedToday ? .orange : .gray)
+                Text(repoPushedToday ? repoPushed : repoNotPushed)
+                    .font(.title)
+                    .foregroundStyle(repoPushedToday ? .green : .red)
+            }
+            .symbolEffect(.bounce, value: repoPushedToday)
+            .padding()
+            .navigationTitle("Repo Streak")
+            .toolbar {
+                Button {
+                    performURLRequest()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+            }
         }
-        .padding()
+        .preferredColorScheme(.dark)
+        .onAppear(perform: performURLRequest)
     }
     
     private func performURLRequest() {
