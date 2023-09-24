@@ -11,8 +11,11 @@ struct ContentView: View {
     private let repoLink = "https://api.github.com/repos/admi126n/100daysofswiftui"
     private let repoPushed = "Coding done for today"
     private let repoNotPushed = "Go code!"
+    private let alertTitle = "Something went wrong"
     
     @State private var repoPushedToday = false
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationStack {
@@ -29,54 +32,44 @@ struct ContentView: View {
             .navigationTitle("Repo Streak")
             .toolbar {
                 Button {
-                    performURLRequest()
+                    Task {
+                        await performURLRequest()
+                    }
                 } label: {
                     Image(systemName: "arrow.clockwise")
                 }
             }
         }
         .preferredColorScheme(.dark)
-        .onAppear(perform: performURLRequest)
-    }
-    
-    private func performURLRequest() {
-        if let safeUrl = URL(string: repoLink) {
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: safeUrl) { data, response, error in
-                if let safeData = data {
-                    parseJson(safeData)
-                }
-            }
-            task.resume()
+        .task {
+            await performURLRequest()
+        }
+        .alert(alertTitle, isPresented: $showAlert) {
+            Button("OK") { }
+        } message: {
+            Text(alertMessage)
         }
     }
     
-    private func parseJson(_ data: Data) {
-        if let decodedData = try? JSONDecoder().decode(Repository.self, from: data) {
-            
-            let repoDate = getDateFrom(string: decodedData.pushed_at)
-            repoPushedToday = checkRepoDate(repoDate)
+    private func performURLRequest() async {
+        do {
+            repoPushedToday = try await StreakValidator.validate(link: repoLink)
+        } catch ValidatorErrors.cannotCreateURLSession {
+            alertMessage = "Cannot create URL session, check internet connection and your repo link"
+            showAlert = true
+        } catch ValidatorErrors.cannotDecodeData {
+            alertMessage = "Cannot read fetched data"
+            showAlert = true
+        } catch ValidatorErrors.cannotGetURL {
+            alertMessage = "Cannot create URL, check your repo link"
+            showAlert = true
+        } catch {
+            alertMessage = "Unknown error"
+            showAlert = true
         }
-    }
-    
-    private func getDateFrom(string date: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        return dateFormatter.date(from: date)!
-    }
-    
-    private func checkRepoDate(_ date: Date) -> Bool {
-        Calendar.current.isDate(date, equalTo: Date.now, toGranularity: .day)
     }
 }
 
 #Preview {
     ContentView()
-}
-
-// MARK: - Custom structs
-
-fileprivate struct Repository: Codable {
-    let pushed_at: String
 }
