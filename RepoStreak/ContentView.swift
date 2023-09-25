@@ -15,6 +15,7 @@ struct ContentView: View {
     
     @State private var repoPushedToday = false
     @State private var showAlert = false
+    @State private var showSheet = false
     @State private var alertMessage = ""
     
     var body: some View {
@@ -29,14 +30,24 @@ struct ContentView: View {
             }
             .symbolEffect(.bounce, value: repoPushedToday)
             .padding()
-            .navigationTitle("Repo Streak")
             .toolbar {
-                Button {
-                    Task {
-                        await performURLRequest()
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        print("Settings")
+                        showSheet = true
+                    } label: {
+                        Image(systemName: "gearshape")
                     }
-                } label: {
-                    Image(systemName: "arrow.clockwise")
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        Task {
+                            await performURLRequest()
+                        }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
                 }
             }
         }

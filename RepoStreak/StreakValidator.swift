@@ -9,7 +9,7 @@ import Foundation
 
 struct StreakValidator {
     private struct Repository: Codable {
-        let pushed_at: String
+        let pushed_at: Date
     }
     
     static func validate(link: String) async throws -> Bool {
@@ -21,19 +21,16 @@ struct StreakValidator {
             throw ValidatorErrors.cannotCreateURLSession
         }
         
-        guard let decodedData = try? JSONDecoder().decode(Repository.self, from: data) else {
+        let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        
+        guard let decodedData = try? decoder.decode(Repository.self, from: data) else {
             throw ValidatorErrors.cannotDecodeData
         }
         
-        let repoDate = getDateFrom(string: decodedData.pushed_at)
-        return checkRepoDate(repoDate)
-    }
-    
-    private static func getDateFrom(string date: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        return dateFormatter.date(from: date)!
+        return checkRepoDate(decodedData.pushed_at)
     }
     
     private static func checkRepoDate(_ date: Date) -> Bool {
