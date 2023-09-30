@@ -18,7 +18,7 @@ struct StreakValidator {
         let link = repoLink + "\(user)/\(repo)"
         
         guard let safeURL = URL(string: link) else {
-            throw ValidatorErrors.cannotGetURL
+            throw ValidatorErrors.cannotCreateURL
         }
         
         guard let (data, _) = try? await URLSession.shared.data(from: safeURL) else {

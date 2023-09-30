@@ -10,5 +10,5 @@ import Foundation
 enum ValidatorErrors: Error {
     case cannotCreateURLSession
     case cannotDecodeData
-    case cannotGetURL
+    case cannotCreateURL
 }

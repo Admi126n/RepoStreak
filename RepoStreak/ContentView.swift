@@ -75,7 +75,7 @@ struct ContentView: View {
         } catch ValidatorErrors.cannotDecodeData {
             alertMessage = "Cannot read fetched data"
             showAlert = true
-        } catch ValidatorErrors.cannotGetURL {
+        } catch ValidatorErrors.cannotCreateURL {
             alertMessage = "Cannot create URL, check your repo link"
             showAlert = true
         } catch {

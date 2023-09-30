@@ -15,7 +15,19 @@
 		666D72B92AC0AECD004DD77A /* ValidatorErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */; };
 		6687B3492AC8AB3100C28BB3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B3482AC8AB3100C28BB3 /* SettingsView.swift */; };
 		6687B34B2AC8B24000C28BB3 /* RepositoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B34A2AC8B24000C28BB3 /* RepositoryData.swift */; };
+		6687B3532AC8BFB200C28BB3 /* RepoStreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B3522AC8BFB200C28BB3 /* RepoStreakTests.swift */; };
+		6687B35A2AC8C2B700C28BB3 /* NewStreakValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B3592AC8C2B700C28BB3 /* NewStreakValidator.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6687B3542AC8BFB200C28BB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 666D724B2AC0694D004DD77A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 666D72522AC0694D004DD77A;
+			remoteInfo = RepoStreak;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		666D72532AC0694D004DD77A /* RepoStreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepoStreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,10 +39,20 @@
 		666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorErrors.swift; sourceTree = "<group>"; };
 		6687B3482AC8AB3100C28BB3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6687B34A2AC8B24000C28BB3 /* RepositoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryData.swift; sourceTree = "<group>"; };
+		6687B3502AC8BFB200C28BB3 /* RepoStreakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepoStreakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6687B3522AC8BFB200C28BB3 /* RepoStreakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoStreakTests.swift; sourceTree = "<group>"; };
+		6687B3592AC8C2B700C28BB3 /* NewStreakValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStreakValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		666D72502AC0694D004DD77A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6687B34D2AC8BFB200C28BB3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				666D72552AC0694D004DD77A /* RepoStreak */,
+				6687B3512AC8BFB200C28BB3 /* RepoStreakTests */,
 				666D72542AC0694D004DD77A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				666D72532AC0694D004DD77A /* RepoStreak.app */,
+				6687B3502AC8BFB200C28BB3 /* RepoStreakTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,6 +87,7 @@
 				666D72582AC0694D004DD77A /* ContentView.swift */,
 				6687B34A2AC8B24000C28BB3 /* RepositoryData.swift */,
 				666D72B62AC0A9D0004DD77A /* StreakValidator.swift */,
+				6687B3592AC8C2B700C28BB3 /* NewStreakValidator.swift */,
 				6687B3482AC8AB3100C28BB3 /* SettingsView.swift */,
 				666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */,
 				666D725A2AC0694E004DD77A /* Assets.xcassets */,
@@ -77,6 +102,14 @@
 				666D725D2AC0694E004DD77A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6687B3512AC8BFB200C28BB3 /* RepoStreakTests */ = {
+			isa = PBXGroup;
+			children = (
+				6687B3522AC8BFB200C28BB3 /* RepoStreakTests.swift */,
+			);
+			path = RepoStreakTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +132,24 @@
 			productReference = 666D72532AC0694D004DD77A /* RepoStreak.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6687B34F2AC8BFB200C28BB3 /* RepoStreakTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6687B3562AC8BFB300C28BB3 /* Build configuration list for PBXNativeTarget "RepoStreakTests" */;
+			buildPhases = (
+				6687B34C2AC8BFB200C28BB3 /* Sources */,
+				6687B34D2AC8BFB200C28BB3 /* Frameworks */,
+				6687B34E2AC8BFB200C28BB3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6687B3552AC8BFB200C28BB3 /* PBXTargetDependency */,
+			);
+			name = RepoStreakTests;
+			productName = RepoStreakTests;
+			productReference = 6687B3502AC8BFB200C28BB3 /* RepoStreakTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -111,6 +162,10 @@
 				TargetAttributes = {
 					666D72522AC0694D004DD77A = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					6687B34F2AC8BFB200C28BB3 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 666D72522AC0694D004DD77A;
 					};
 				};
 			};
@@ -128,6 +183,7 @@
 			projectRoot = "";
 			targets = (
 				666D72522AC0694D004DD77A /* RepoStreak */,
+				6687B34F2AC8BFB200C28BB3 /* RepoStreakTests */,
 			);
 		};
 /* End PBXProject section */
@@ -142,6 +198,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6687B34E2AC8BFB200C28BB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -151,6 +214,7 @@
 			files = (
 				6687B3492AC8AB3100C28BB3 /* SettingsView.swift in Sources */,
 				666D72B72AC0A9D0004DD77A /* StreakValidator.swift in Sources */,
+				6687B35A2AC8C2B700C28BB3 /* NewStreakValidator.swift in Sources */,
 				666D72592AC0694D004DD77A /* ContentView.swift in Sources */,
 				666D72572AC0694D004DD77A /* RepoStreakApp.swift in Sources */,
 				666D72B92AC0AECD004DD77A /* ValidatorErrors.swift in Sources */,
@@ -158,7 +222,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6687B34C2AC8BFB200C28BB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6687B3532AC8BFB200C28BB3 /* RepoStreakTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6687B3552AC8BFB200C28BB3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 666D72522AC0694D004DD77A /* RepoStreak */;
+			targetProxy = 6687B3542AC8BFB200C28BB3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		666D725F2AC0694E004DD77A /* Debug */ = {
@@ -338,6 +418,42 @@
 			};
 			name = Release;
 		};
+		6687B3572AC8BFB300C28BB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 474G49AKB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.RepoStreakTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RepoStreak.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RepoStreak";
+			};
+			name = Debug;
+		};
+		6687B3582AC8BFB300C28BB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 474G49AKB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.RepoStreakTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RepoStreak.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RepoStreak";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -355,6 +471,15 @@
 			buildConfigurations = (
 				666D72622AC0694E004DD77A /* Debug */,
 				666D72632AC0694E004DD77A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6687B3562AC8BFB300C28BB3 /* Build configuration list for PBXNativeTarget "RepoStreakTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6687B3572AC8BFB300C28BB3 /* Debug */,
+				6687B3582AC8BFB300C28BB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
