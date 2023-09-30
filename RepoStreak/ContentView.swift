@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let repoLink = "https://api.github.com/repos/admi126n/100daysofswiftui"
     private let repoPushed = "Coding done for today"
     private let repoNotPushed = "Go code!"
     private let alertTitle = "Something went wrong"
@@ -17,6 +16,8 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var showSheet = false
     @State private var alertMessage = ""
+    
+    @StateObject var repoData = RepositoryData()
     
     var body: some View {
         NavigationStack {
@@ -60,11 +61,14 @@ struct ContentView: View {
         } message: {
             Text(alertMessage)
         }
+        .sheet(isPresented: $showSheet) {
+            SettingsView(repoData: repoData)
+        }
     }
     
     private func performURLRequest() async {
         do {
-            repoPushedToday = try await StreakValidator.validate(link: repoLink)
+            repoPushedToday = try await StreakValidator.validate(user: repoData.username, repo: repoData.repositoryName)
         } catch ValidatorErrors.cannotCreateURLSession {
             alertMessage = "Cannot create URL session, check internet connection and your repo link"
             showAlert = true

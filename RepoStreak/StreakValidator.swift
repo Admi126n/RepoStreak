@@ -12,7 +12,11 @@ struct StreakValidator {
         let pushed_at: Date
     }
     
-    static func validate(link: String) async throws -> Bool {
+    private static let repoLink = "https://api.github.com/repos/"
+    
+    static func validate(user: String, repo: String) async throws -> Bool {
+        let link = repoLink + "\(user)/\(repo)"
+        
         guard let safeURL = URL(string: link) else {
             throw ValidatorErrors.cannotGetURL
         }
