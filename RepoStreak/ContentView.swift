@@ -68,7 +68,8 @@ struct ContentView: View {
     
     private func performURLRequest() async {
         do {
-            repoPushedToday = try await StreakValidator.validate(user: repoData.username, repo: repoData.repositoryName)
+            let result = try await NewStreakValidator.checkStreak(user: repoData.username, repo: repoData.repositoryName)
+            repoPushedToday = result > 0
         } catch ValidatorErrors.cannotCreateURLSession {
             alertMessage = "Cannot create URL session, check internet connection and your repo link"
             showAlert = true
