@@ -1,5 +1,5 @@
 //
-//  NewStreakValidator.swift
+//  StreakCounter.swift
 //  RepoStreak
 //
 //  Created by Adam Tokarski on 30/09/2023.
@@ -19,7 +19,7 @@ struct Author: Codable {
     let date: Date
 }
 
-struct NewStreakValidator {
+struct StreakCounter {
      static func getCommitsDates(_ user: String, _ repo: String) async throws -> [Date] {
         let link = "https://api.github.com/repos/\(user)/\(repo)/commits?per_page=100"
         let decoder = JSONDecoder()
@@ -55,16 +55,18 @@ struct NewStreakValidator {
         return dates
     }
     
-    static func countStreak(for commits: [Date]) -> Int {
+    static func countStreak(for commits: [Date]) -> (streak: Int, extended: Bool) {
         var commitsList = commits
         
         let today = Date.now
         var subtractingDays = 0
         var streakDuration = 0
+        var streakExtended = false
         
         if Calendar.current.isDate(commitsList[0], equalTo: today, toGranularity: .day) {
             streakDuration += 1
             subtractingDays -= 1
+            streakExtended = true
             commitsList.remove(at: 0)
         } else if Calendar.current.isDate(
             commitsList[0],
@@ -77,7 +79,7 @@ struct NewStreakValidator {
         }
         
         guard streakDuration != 0 else {
-            return 0
+            return (0, false)
         }
         
         for commit in commitsList {
@@ -90,21 +92,21 @@ struct NewStreakValidator {
                 streakDuration += 1
 
             } else {
-                return streakDuration
+                return (streakDuration, streakExtended)
             }
         }
         
-        return streakDuration
+        return (streakDuration, streakExtended)
     }
     
-    static func checkStreak(user: String, repo: String) async throws -> Int {
+    static func checkStreak(user: String, repo: String) async throws -> (streak: Int, extended: Bool) {
         do {
             let commitsDates = try await getCommitsDates(user, repo)
             
             return countStreak(for: commitsDates)
         } catch {
             
-            return 0
+            return (0, false)
         }
     }
     
