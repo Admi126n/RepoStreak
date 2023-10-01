@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let repoPushed = "Coding done for today"
+    private let repoPushed = "Coding done for today!"
     private let repoNotPushed = "Go code!"
     private let alertTitle = "Something went wrong"
     
@@ -16,15 +16,23 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var showSheet = false
     @State private var alertMessage = ""
+    @State private var streakDuration = 0
     
     @StateObject var repoData = RepositoryData()
     
     var body: some View {
         NavigationStack {
             VStack {
-                Image(systemName: "flame")
-                    .font(.system(size: 70))
-                    .foregroundStyle(repoPushedToday ? .orange : .gray)
+                HStack(spacing: 25) {
+                    Image(systemName: "flame")
+                        .font(.system(size: 70))
+                        .foregroundStyle(repoPushedToday ? .orange : .gray)
+                    
+                    Text("\(streakDuration)")
+                        .font(.system(size: 80))
+                        .foregroundStyle(repoPushedToday ? .orange : .gray)
+                }
+                    
                 Text(repoPushedToday ? repoPushed : repoNotPushed)
                     .font(.title)
                     .foregroundStyle(repoPushedToday ? .green : .red)
@@ -68,8 +76,9 @@ struct ContentView: View {
     
     private func performURLRequest() async {
         do {
-            let result = try await StreakCounter.checkStreak(user: repoData.username, repo: repoData.repositoryName)
-            repoPushedToday = result.streak > 0
+            (streakDuration, repoPushedToday) = try await StreakCounter.checkStreak(
+                user: repoData.username,
+                repo: repoData.repositoryName)
         } catch ValidatorErrors.cannotCreateURLSession {
             alertMessage = "Cannot create URL session, check internet connection and your repo link"
             showAlert = true
