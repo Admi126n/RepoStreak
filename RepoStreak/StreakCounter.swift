@@ -105,8 +105,7 @@ struct StreakCounter {
             
             return countStreak(for: commitsDates)
         } catch {
-            
-            return (0, false)
+            throw error
         }
     }
     

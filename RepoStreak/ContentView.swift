@@ -42,7 +42,6 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        print("Settings")
                         showSheet = true
                     } label: {
                         Image(systemName: "gearshape")

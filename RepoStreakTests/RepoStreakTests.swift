@@ -21,6 +21,7 @@ final class RepoStreakTests: XCTestCase {
     func testStreakCounter_WhenInvalidRepositoryDataGiven_ShouldThrowAnError() async {
         do {
             _ = try await StreakCounter.getCommitsDates("", "")
+            XCTFail("StreakCounter.getCommitsDates should have failed throw an cannotDecodeData error")
         } catch {
             XCTAssertEqual(error as! ValidatorErrors, ValidatorErrors.cannotDecodeData, "Wrong error thrown")
         }
@@ -29,6 +30,7 @@ final class RepoStreakTests: XCTestCase {
     func testStreakCounter_WhenEmptyReposirotyGiven_ShouldThrowAnError() async {
         do {
             _ = try await StreakCounter.getCommitsDates("admi126n", "test")
+            XCTFail("StreakCounter.getCommitsDates should have failed throw an cannotDecodeData error")
         } catch {
             XCTAssertEqual(error as! ValidatorErrors, ValidatorErrors.cannotDecodeData, "Wrong error thrown")
         }
