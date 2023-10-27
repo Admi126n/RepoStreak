@@ -39,7 +39,7 @@ struct SettingsView: View {
                         Text($0)
                     }
                 } label: {
-                    Text("Repository name")
+                    Text("Main repository")
                 }
                 .pickerStyle(.inline)
             }

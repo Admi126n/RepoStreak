@@ -109,4 +109,21 @@ struct StreakCounter {
         }
     }
     
+	static func checkStreakForReposList(user: String, mainRepo: String) async throws -> [(name: String, duration: Int, pushedToday: Bool)] {
+		var result: [(name: String, duration: Int, pushedToday: Bool)] = []
+		var reposList = try await ReposFetcher.getRepositories(for: user)
+		
+		if let index = reposList.firstIndex(of: mainRepo) {
+			reposList.remove(at: index)
+		}
+		
+		for repo in reposList {
+			let commitsDates = try await getCommitsDates(user, repo)
+			let (duration, extended) = countStreak(for: commitsDates)
+			result.append((name: repo, duration: duration, pushedToday: extended))
+		}
+		
+		return result
+	}
+	
 }

@@ -7,9 +7,64 @@
 
 import SwiftUI
 
+fileprivate struct MainRepo: View {
+	private let repoPushed = "Coding done for today!"
+	private let repoNotPushed = "Go code!"
+	
+	let streakDuration: Int
+	let pushedToday: Bool
+	
+	var body: some View {
+		Group {
+			HStack(spacing: 25) {
+				Image(systemName: "flame")
+					.font(.system(size: 70))
+					.foregroundStyle(pushedToday ? .orange : .gray)
+				
+				Text("\(streakDuration)")
+					.font(.system(size: 80))
+					.foregroundStyle(pushedToday ? .orange : .gray)
+			}
+			
+			Text(pushedToday ? repoPushed : repoNotPushed)
+				.font(.title)
+				.foregroundStyle(pushedToday ? .green : .red)
+		}
+	}
+}
+
+fileprivate struct RepoCell: View {
+	let name: String
+	let streakDuration: Int
+	let pushedToday: Bool
+	
+	var body: some View {
+		ZStack {
+			RoundedRectangle(cornerRadius: 25)
+				.frame(height: 30)
+				.foregroundStyle(Color(white: 0.15))
+			
+			HStack {
+				Text(name)
+					.font(.headline)
+					.foregroundStyle(pushedToday ? .green : .red)
+				
+				Spacer()
+				
+				Text("\(streakDuration)")
+					.font(.headline)
+					.foregroundStyle(pushedToday ? .orange : .gray)
+				
+				Image(systemName: "flame")
+					.font(.headline)
+					.foregroundStyle(pushedToday ? .orange : .gray)
+			}
+			.padding(.horizontal)
+		}
+	}
+}
+
 struct ContentView: View {
-    private let repoPushed = "Coding done for today!"
-    private let repoNotPushed = "Go code!"
     private let alertTitle = "Something went wrong"
     
     @State private var repoPushedToday = false
@@ -17,25 +72,25 @@ struct ContentView: View {
     @State private var showSheet = false
     @State private var alertMessage = ""
     @State private var streakDuration = 0
+	@State private var reposList: [(name: String, duration: Int, pushedToday: Bool)] = []
     
     @StateObject var repoData = RepositoryData()
     
     var body: some View {
         NavigationStack {
-            VStack {
-                HStack(spacing: 25) {
-                    Image(systemName: "flame")
-                        .font(.system(size: 70))
-                        .foregroundStyle(repoPushedToday ? .orange : .gray)
-                    
-                    Text("\(streakDuration)")
-                        .font(.system(size: 80))
-                        .foregroundStyle(repoPushedToday ? .orange : .gray)
-                }
-                    
-                Text(repoPushedToday ? repoPushed : repoNotPushed)
-                    .font(.title)
-                    .foregroundStyle(repoPushedToday ? .green : .red)
+			VStack {
+				Spacer()
+				
+				MainRepo(
+					streakDuration: streakDuration,
+					pushedToday: repoPushedToday
+				)
+				
+				Spacer()
+				
+				ForEach(reposList, id: \.name) { repo in
+					RepoCell(name: repo.name, streakDuration: repo.duration, pushedToday: repo.pushedToday)
+				}
             }
             .symbolEffect(.bounce, value: repoPushedToday)
             .padding()
@@ -78,6 +133,8 @@ struct ContentView: View {
             (streakDuration, repoPushedToday) = try await StreakCounter.checkStreak(
                 user: repoData.username,
                 repo: repoData.repositoryName)
+			
+			reposList = try await StreakCounter.checkStreakForReposList(user: repoData.username, mainRepo: repoData.repositoryName)
         } catch ValidatorErrors.cannotCreateURLSession {
             alertMessage = "Cannot create URL session, check internet connection and your repo link"
             showAlert = true
@@ -95,5 +152,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+	ContentView()
 }
