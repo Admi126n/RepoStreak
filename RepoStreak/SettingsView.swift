@@ -62,22 +62,9 @@ struct SettingsView: View {
     }
     
     private func performURLRequest() async {
-        do {
-            repositories = try await ReposFetcher.getRepositories(for: repoData.username)
-        } catch ValidatorErrors.cannotCreateURLSession {
-            alertMessage = "Cannot create URL session, check internet connection and your username"
-            showAlert = true
-        } catch ValidatorErrors.cannotDecodeData {
-            alertMessage = "Cannot read fetched data"
-            showAlert = true
-        } catch ValidatorErrors.cannotCreateURL {
-            alertMessage = "Cannot create URL, check your username"
-            showAlert = true
-        } catch {
-            alertMessage = "Unknown error"
-            showAlert = true
-        }
-        
+        repositories = await ReposFetcher.getRepositories(for: repoData.username) { 
+			fatalError("Compleation handler not implememnted")
+		}
     }
 }
 

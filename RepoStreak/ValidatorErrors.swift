@@ -8,7 +8,7 @@
 import Foundation
 
 enum ValidatorErrors: Error {
-    case cannotCreateURLSession
+//    case cannotCreateURLSession
     case cannotDecodeData
-    case cannotCreateURL
+//    case cannotCreateURL
 }
