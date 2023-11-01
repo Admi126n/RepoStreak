@@ -7,8 +7,28 @@
 
 import Foundation
 
+struct ReposData {
+	var mainRepoName: String
+	var mainDuration: Int
+	var mainExtended: Bool
+	
+	var reposList: [RepoData]?
+	
+	init() {
+		self.mainRepoName = ""
+		self.mainDuration = 0
+		self.mainExtended = false
+	}
+}
+
+struct RepoData {
+	var name: String
+	var duration: Int
+	var extended: Bool
+}
+
 struct StreakCounter {
-	static func countStreak(for commits: [Date]) -> (streak: Int, extended: Bool) {
+	private static func countStreak(for commits: [Date]) -> (streak: Int, extended: Bool) {
 		var commitsList = commits
 		
 		let today = Date.now
@@ -53,7 +73,6 @@ struct StreakCounter {
 	}
 	
 	static func checkStreak(user: String, repo: String) async -> (streak: Int, extended: Bool) {
-		
 		let commitsDates = await ReposFetcher.getCommitsDates(user, repo) { 
 			fatalError("Compleation handler not implememnted")
 		}
@@ -61,25 +80,31 @@ struct StreakCounter {
 		return countStreak(for: commitsDates)
 	}
 	
-	static func checkStreakForReposList(user: String, mainRepo: String) async -> [(name: String, duration: Int, pushedToday: Bool)] {
-		var result: [(name: String, duration: Int, pushedToday: Bool)] = []
-		var reposList = await ReposFetcher.getRepositories(for: user) { 
-			fatalError("Compleation handler not implememnted")
+	static func checkStreakForReposList(user: String, mainRepo: String) async -> ReposData {
+		var reposData = ReposData()
+		
+		var reposList: [RepoData] = []
+		let fetchedRepos = await ReposFetcher.getRepositories(for: user) {
+//			fatalError("Compleation handler not implememnted")
 		}
 		
-		if let index = reposList.firstIndex(of: mainRepo) {
-			reposList.remove(at: index)
-		}
-		
-		for repo in reposList {
+		for repo in fetchedRepos {
 			let commitsDates = await ReposFetcher.getCommitsDates(user, repo) { 
-				fatalError("Compleation handler not implememnted")
+//				fatalError("Compleation handler not implememnted")
 			}
+			
 			let (duration, extended) = countStreak(for: commitsDates)
-			result.append((name: repo, duration: duration, pushedToday: extended))
+			
+			if repo == mainRepo {
+				reposData.mainRepoName = repo
+				reposData.mainDuration = duration
+				reposData.mainExtended = extended
+			} else {
+				reposList.append(RepoData(name: repo, duration: duration, extended: extended))
+			}
 		}
 		
-		return result
+		reposData.reposList = reposList
+		return reposData
 	}
-	
 }

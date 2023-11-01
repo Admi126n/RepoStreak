@@ -63,7 +63,7 @@ struct SettingsView: View {
     
     private func performURLRequest() async {
         repositories = await ReposFetcher.getRepositories(for: repoData.username) { 
-			fatalError("Compleation handler not implememnted")
+//			fatalError("Compleation handler not implememnted")
 		}
     }
 }

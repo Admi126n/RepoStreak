@@ -71,8 +71,7 @@ struct ContentView: View {
 	@State private var showAlert = false
 	@State private var showSheet = false
 	@State private var alertMessage = ""
-	@State private var streakDuration = 0
-	@State private var reposList: [(name: String, duration: Int, pushedToday: Bool)] = []
+	@State private var reposData = ReposData()
 	
 	@StateObject var repoData = RepositoryData()
 	
@@ -82,14 +81,17 @@ struct ContentView: View {
 				Spacer()
 				
 				MainRepo(
-					streakDuration: streakDuration,
-					pushedToday: repoPushedToday
+					streakDuration: reposData.mainDuration,
+					pushedToday: reposData.mainExtended
 				)
 				
 				Spacer()
 				
-				ForEach(reposList, id: \.name) { repo in
-					RepoCell(name: repo.name, streakDuration: repo.duration, pushedToday: repo.pushedToday)
+				if let reposList = reposData.reposList {
+					ForEach(reposList, id: \.name) { repo in
+						RepoCell(name: repo.name, streakDuration: repo.duration, pushedToday: repo.extended)
+						
+					}
 				}
 			}
 			.symbolEffect(.bounce, value: repoPushedToday)
@@ -129,11 +131,7 @@ struct ContentView: View {
 	}
 	
 	private func performURLRequest() async {
-		(streakDuration, repoPushedToday) = await StreakCounter.checkStreak(
-			user: repoData.username,
-			repo: repoData.repositoryName)
-		
-		reposList = await StreakCounter.checkStreakForReposList(user: repoData.username, mainRepo: repoData.repositoryName)
+		reposData = await StreakCounter.checkStreakForReposList(user: repoData.username, mainRepo: repoData.repositoryName)
 	}
 }
 
