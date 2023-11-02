@@ -24,8 +24,10 @@ extension ContentView {
 				showAlert = true
 			}
 			
-			withAnimation {
-				repositoriesData = tempData
+			Task { @MainActor in
+				withAnimation {
+					repositoriesData = tempData
+				}
 			}
 		}
 	}

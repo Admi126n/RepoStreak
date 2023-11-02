@@ -31,23 +31,22 @@ struct StreakCounter {
 	private static func countStreak(for commits: [Date]) -> (streak: Int, extended: Bool) {
 		var commitsList = commits
 		
-		let today = Date.now
-		var subtractingDays = 0
+		var tempDay = Date.now
 		var streakDuration = 0
 		var streakExtended = false
 		
-		if Calendar.current.isDate(commitsList[0], equalTo: today, toGranularity: .day) {
+		if Calendar.current.isDate(commitsList[0], equalTo: tempDay, toGranularity: .day) {
 			streakDuration += 1
-			subtractingDays -= 1
 			streakExtended = true
 			commitsList.remove(at: 0)
-		} else if Calendar.current.isDate(
+		} 
+		else if Calendar.current.isDate(
 			commitsList[0],
-			equalTo: Calendar.current.date(byAdding: .day, value: -1, to: today)!,
+			equalTo: Calendar.current.date(byAdding: .day, value: -1, to: tempDay)!,
 			toGranularity: .day) {
 			
 			streakDuration += 1
-			subtractingDays -= 2
+			tempDay = Calendar.current.date(byAdding: .day, value: -1, to: tempDay)!
 			commitsList.remove(at: 0)
 		}
 		
@@ -58,10 +57,17 @@ struct StreakCounter {
 		for commit in commitsList {
 			if Calendar.current.isDate(
 				commit,
-				equalTo: Calendar.current.date(byAdding: .day, value: subtractingDays, to: today)!,
+				equalTo: tempDay,
 				toGranularity: .day) {
 				
-				subtractingDays -= 1
+				continue
+				
+			} else if Calendar.current.isDate(
+				commit,
+				equalTo: Calendar.current.date(byAdding: .day, value: -1, to: tempDay)!,
+				toGranularity: .day) {
+				
+				tempDay = Calendar.current.date(byAdding: .day, value: -1, to: tempDay)!
 				streakDuration += 1
 				
 			} else {

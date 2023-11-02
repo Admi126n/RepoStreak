@@ -18,8 +18,10 @@ extension SettingsView {
 				showAlert = true
 			}
 			
-			withAnimation {
-				repositories = tempData
+			Task { @MainActor in
+				withAnimation {
+					repositories = tempData
+				}
 			}
 		}
 	}
