@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
-    private let alertTitle = "Something went wrong"
-    
-    @Environment(\.dismiss) var dismiss
-    
-    @ObservedObject var repoData: UserSettings
-    
-    @State private var repositories: [String] = []
-    @State private var showAlert = false
-    @State private var alertMessage = ""
+	@Environment(\.dismiss) var dismiss
+	@ObservedObject var userSettings: UserSettings
+	@StateObject var settingsViewModel = SettingsViewModel()
+	
+	private let alertTitle = "Something went wrong."
+	let onSave: () -> ()
     
     var body: some View {
         NavigationStack {
@@ -24,18 +21,20 @@ struct SettingsView: View {
                 Section("Username") {
                     TextField("Username", text: Binding(
                         get: {
-                            repoData.username
+							userSettings.username
                         }, set: {
-                            repoData.username = $0.trimmingCharacters(in: .whitespacesAndNewlines)
+							userSettings.username = $0.trimmingCharacters(in: .whitespacesAndNewlines)
                         }
                     ))
                     .onSubmit {
-                        Task { await performURLRequest() }
+						Task {
+							await settingsViewModel.performURLRequest()
+						}
                     }
                 }
                 
-                Picker(selection: $repoData.mainRepository) {
-                    ForEach(repositories, id: \.self) {
+				Picker(selection: $userSettings.mainRepository) {
+					ForEach(settingsViewModel.repositories, id: \.self) {
                         Text($0)
                     }
                 } label: {
@@ -46,28 +45,17 @@ struct SettingsView: View {
             .preferredColorScheme(.dark)
             .navigationTitle("Settings")
             .toolbar {
-                Button("Done") {
-                    dismiss()
+                Button("Save") {
+					onSave()
+					dismiss()
                 }
             }
         }
-        .task {
-            await performURLRequest()
-        }
-        .alert(alertTitle, isPresented: $showAlert) {
-            Button("OK") { }
-        } message: {
-            Text(alertMessage)
-        }
-    }
-    
-    private func performURLRequest() async {
-        repositories = await ReposFetcher.getRepositories(for: repoData.username) {
-			print($0.localizedDescription)
-		}
+        .task { await settingsViewModel.performURLRequest() }
+		.alert(alertTitle, isPresented: $settingsViewModel.showAlert) { }
     }
 }
 
 #Preview {
-    SettingsView(repoData: UserSettings())
+	SettingsView(userSettings: UserSettings()) { }
 }

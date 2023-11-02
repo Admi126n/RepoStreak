@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
 	@StateObject var contentViewModel = ContentViewModel()
 	
-	let alertTitle = "Something went wrong"
+	private let alertTitle = "Something went wrong."
 	
 	var body: some View {
 		NavigationStack {
@@ -58,14 +58,14 @@ struct ContentView: View {
 			}
 		}
 		.preferredColorScheme(.dark)
-		.task {
-			await contentViewModel.performURLRequest()
-		}
-		.alert(alertTitle, isPresented: $contentViewModel.showAlert) { } message: {
-			Text(contentViewModel.alertMessage)
-		}
+		.task { await contentViewModel.performURLRequest() }
+		.alert(alertTitle, isPresented: $contentViewModel.showAlert) { }
 		.sheet(isPresented: $contentViewModel.showSheet) {
-			SettingsView(repoData: contentViewModel.userSettings)
+			SettingsView(userSettings: contentViewModel.userSettings) {
+				Task {
+					await contentViewModel.performURLRequest()
+				}
+			}
 		}
 	}
 }
