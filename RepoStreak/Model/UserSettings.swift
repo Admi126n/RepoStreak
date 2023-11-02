@@ -1,5 +1,5 @@
 //
-//  RepositoryData.swift
+//  UserSettings.swift
 //  RepoStreak
 //
 //  Created by Adam Tokarski on 30/09/2023.
@@ -9,19 +9,19 @@ import Foundation
 
 fileprivate enum UserDefaultsKeys: String {
     case username
-    case repositoryName
+    case mainRepository
 }
 
-class RepositoryData: ObservableObject {
+class UserSettings: ObservableObject {
     @Published var username: String {
         didSet {
             UserDefaults.standard.setValue(username, forKey: UserDefaultsKeys.username.rawValue)
         }
     }
     
-    @Published var repositoryName: String {
+    @Published var mainRepository: String {
         didSet {
-            UserDefaults.standard.setValue(repositoryName, forKey: UserDefaultsKeys.repositoryName.rawValue)
+            UserDefaults.standard.setValue(mainRepository, forKey: UserDefaultsKeys.mainRepository.rawValue)
         }
     }
     
@@ -32,10 +32,10 @@ class RepositoryData: ObservableObject {
             username = "Admi126n"
         }
         
-        if let safeRepositoryName = UserDefaults.standard.string(forKey: UserDefaultsKeys.repositoryName.rawValue) {
-            repositoryName = safeRepositoryName
+        if let safeRepositoryName = UserDefaults.standard.string(forKey: UserDefaultsKeys.mainRepository.rawValue) {
+            mainRepository = safeRepositoryName
         } else {
-            repositoryName = "100DaysOfSwiftUI"
+            mainRepository = "100DaysOfSwiftUI"
         }
     }
 }

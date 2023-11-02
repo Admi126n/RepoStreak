@@ -63,20 +63,20 @@ struct ReposFetcher {
 		return result
 	}
 	
-	static func getRepositories(for user: String, _ compleationHandler: () -> ()) async -> [String] {
+	static func getRepositories(for user: String, _ compleationHandler: (Error) -> ()) async -> [String] {
 		let link = "https://api.github.com/users/\(user)/repos"
 		var fetchedData: [Repository] = []
 		
 		do {
 			fetchedData = try await fetchData(from: link)
 		} catch {
-			compleationHandler()
+			compleationHandler(error)
 		}
 		
 		return getNames(from: fetchedData)
 	}
 	
-	static func getCommitsDates(_ user: String, _ repo: String, _ compleationHandler: () -> ()) async -> [Date] {
+	static func getCommitsDates(_ user: String, _ repo: String, _ compleationHandler: (Error) -> ()) async -> [Date] {
 		let link = "https://api.github.com/repos/\(user)/\(repo)/commits?per_page=100"
 		
 		let decoder = JSONDecoder()
@@ -89,13 +89,9 @@ struct ReposFetcher {
 		do {
 			fetchedData = try await ReposFetcher.fetchData(from: link, using: decoder)
 		} catch {
-			compleationHandler()
+			compleationHandler(error)
 		}
 		
 		return getDates(from: fetchedData)
 	}
-	
-	
-	
-	
 }

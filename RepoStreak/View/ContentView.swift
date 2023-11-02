@@ -7,99 +7,40 @@
 
 import SwiftUI
 
-fileprivate struct MainRepo: View {
-	private let repoPushed = "Coding done for today!"
-	private let repoNotPushed = "Go code!"
-	
-	let streakDuration: Int
-	let pushedToday: Bool
-	
-	var body: some View {
-		Group {
-			HStack(spacing: 25) {
-				Image(systemName: "flame")
-					.font(.system(size: 70))
-					.foregroundStyle(pushedToday ? .orange : .gray)
-				
-				Text("\(streakDuration)")
-					.font(.system(size: 80))
-					.foregroundStyle(pushedToday ? .orange : .gray)
-			}
-			
-			Text(pushedToday ? repoPushed : repoNotPushed)
-				.font(.title)
-				.foregroundStyle(pushedToday ? .green : .red)
-		}
-	}
-}
-
-fileprivate struct RepoCell: View {
-	let name: String
-	let streakDuration: Int
-	let pushedToday: Bool
-	
-	var body: some View {
-		ZStack {
-			RoundedRectangle(cornerRadius: 25)
-				.frame(height: 30)
-				.foregroundStyle(Color(white: 0.15))
-			
-			HStack {
-				Text(name)
-					.font(.headline)
-					.foregroundStyle(pushedToday ? .green : .red)
-				
-				Spacer()
-				
-				Text("\(streakDuration)")
-					.font(.headline)
-					.foregroundStyle(pushedToday ? .orange : .gray)
-				
-				Image(systemName: "flame")
-					.font(.headline)
-					.foregroundStyle(pushedToday ? .orange : .gray)
-			}
-			.padding(.horizontal)
-		}
-	}
-}
-
 struct ContentView: View {
-	private let alertTitle = "Something went wrong"
+	@StateObject var contentViewModel = ContentViewModel()
 	
-	@State private var repoPushedToday = false
-	@State private var showAlert = false
-	@State private var showSheet = false
-	@State private var alertMessage = ""
-	@State private var reposData = ReposData()
-	
-	@StateObject var repoData = RepositoryData()
+	let alertTitle = "Something went wrong"
 	
 	var body: some View {
 		NavigationStack {
 			VStack {
 				Spacer()
 				
-				MainRepo(
-					streakDuration: reposData.mainDuration,
-					pushedToday: reposData.mainExtended
+				MainRepoView(
+					streakDuration: contentViewModel.repositoriesData.mainDuration,
+					pushedToday: contentViewModel.repositoriesData.mainExtended
 				)
 				
 				Spacer()
 				
-				if let reposList = reposData.reposList {
+				if let reposList = contentViewModel.repositoriesData.reposList {
 					ForEach(reposList, id: \.name) { repo in
-						RepoCell(name: repo.name, streakDuration: repo.duration, pushedToday: repo.extended)
+						RepoCellView(
+							name: repo.name,
+							streakDuration: repo.duration,
+							pushedToday: repo.extended
+						)
 						
 					}
 				}
 			}
-			.symbolEffect(.bounce, value: repoPushedToday)
+			.symbolEffect(.bounce, value: contentViewModel.repositoriesData.mainDuration)
 			.padding()
 			.toolbar {
 				ToolbarItem(placement: .topBarLeading) {
 					Button {
-						showSheet = true
+						contentViewModel.showSheet = true
 					} label: {
 						Image(systemName: "gearshape")
 					}
@@ -108,7 +49,7 @@ struct ContentView: View {
 				ToolbarItem(placement: .topBarTrailing) {
 					Button {
 						Task {
-							await performURLRequest()
+							await contentViewModel.performURLRequest()
 						}
 					} label: {
 						Image(systemName: "arrow.clockwise")
@@ -118,20 +59,14 @@ struct ContentView: View {
 		}
 		.preferredColorScheme(.dark)
 		.task {
-			await performURLRequest()
+			await contentViewModel.performURLRequest()
 		}
-		.alert(alertTitle, isPresented: $showAlert) {
-			Button("OK") { }
-		} message: {
-			Text(alertMessage)
+		.alert(alertTitle, isPresented: $contentViewModel.showAlert) { } message: {
+			Text(contentViewModel.alertMessage)
 		}
-		.sheet(isPresented: $showSheet) {
-			SettingsView(repoData: repoData)
+		.sheet(isPresented: $contentViewModel.showSheet) {
+			SettingsView(repoData: contentViewModel.userSettings)
 		}
-	}
-	
-	private func performURLRequest() async {
-		reposData = await StreakCounter.checkStreakForReposList(user: repoData.username, mainRepo: repoData.repositoryName)
 	}
 }
 

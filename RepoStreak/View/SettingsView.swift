@@ -12,7 +12,7 @@ struct SettingsView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @ObservedObject var repoData: RepositoryData
+    @ObservedObject var repoData: UserSettings
     
     @State private var repositories: [String] = []
     @State private var showAlert = false
@@ -34,7 +34,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                Picker(selection: $repoData.repositoryName) {
+                Picker(selection: $repoData.mainRepository) {
                     ForEach(repositories, id: \.self) {
                         Text($0)
                     }
@@ -62,12 +62,12 @@ struct SettingsView: View {
     }
     
     private func performURLRequest() async {
-        repositories = await ReposFetcher.getRepositories(for: repoData.username) { 
-//			fatalError("Compleation handler not implememnted")
+        repositories = await ReposFetcher.getRepositories(for: repoData.username) {
+			print($0.localizedDescription)
 		}
     }
 }
 
 #Preview {
-    SettingsView(repoData: RepositoryData())
+    SettingsView(repoData: UserSettings())
 }

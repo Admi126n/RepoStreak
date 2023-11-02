@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension SettingsView {
+	@MainActor class SettingsViewModel: ObservableObject {
+		
+	}
+}

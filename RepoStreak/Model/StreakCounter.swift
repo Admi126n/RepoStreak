@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReposData {
+struct RepositoriesData {
 	var mainRepoName: String
 	var mainDuration: Int
 	var mainExtended: Bool
@@ -72,25 +72,17 @@ struct StreakCounter {
 		return (streakDuration, streakExtended)
 	}
 	
-	static func checkStreak(user: String, repo: String) async -> (streak: Int, extended: Bool) {
-		let commitsDates = await ReposFetcher.getCommitsDates(user, repo) { 
-			fatalError("Compleation handler not implememnted")
-		}
-			
-		return countStreak(for: commitsDates)
-	}
-	
-	static func checkStreakForReposList(user: String, mainRepo: String) async -> ReposData {
-		var reposData = ReposData()
+	static func checkStreakForReposList(user: String, mainRepo: String, _ compleationHandler: (Error) -> ()) async -> RepositoriesData {
+		var reposData = RepositoriesData()
 		
 		var reposList: [RepoData] = []
-		let fetchedRepos = await ReposFetcher.getRepositories(for: user) {
-//			fatalError("Compleation handler not implememnted")
+		let fetchedRepos = await ReposFetcher.getRepositories(for: user) { error in
+			compleationHandler(error)
 		}
 		
 		for repo in fetchedRepos {
-			let commitsDates = await ReposFetcher.getCommitsDates(user, repo) { 
-//				fatalError("Compleation handler not implememnted")
+			let commitsDates = await ReposFetcher.getCommitsDates(user, repo) { error in
+				compleationHandler(error)
 			}
 			
 			let (duration, extended) = countStreak(for: commitsDates)
