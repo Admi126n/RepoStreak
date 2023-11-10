@@ -12,27 +12,40 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
 	func placeholder(in context: Context) -> SimpleEntry {
-		SimpleEntry(date: Date(), emoji: "😀")
+		SimpleEntry(date: Date(), repoData: RepositoriesData())
 	}
 	
 	func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-		let entry = SimpleEntry(date: Date(), emoji: "😀")
-		completion(entry)
+		let userSettings = UserSettings()
+				
+		Task {
+			let fetchedData = await StreakCounter.checkStreakForReposList(
+				user: userSettings.username,
+				mainRepo: userSettings.mainRepository
+			) {
+				print($0.localizedDescription)
+			}
+			
+			let entry = SimpleEntry(date: .now, repoData: fetchedData)
+			completion(entry)
+		}
 	}
 	
 	func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-		var entries: [SimpleEntry] = []
+		let userSettings = UserSettings()
 		
-		// Generate a timeline consisting of five entries an hour apart, starting from the current date.
-		let currentDate = Date()
-		for hourOffset in 0 ..< 5 {
-			let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-			let entry = SimpleEntry(date: entryDate, emoji: "😀")
-			entries.append(entry)
+		Task {
+			let fetchedData = await StreakCounter.checkStreakForReposList(
+				user: userSettings.username,
+				mainRepo: userSettings.mainRepository
+			) {
+				print($0.localizedDescription)
+			}
+			let entry = SimpleEntry(date: .now, repoData: fetchedData)
+			let timeline = Timeline(entries: [entry], policy: .after(.now.advanced(by: 10)))
+			
+			completion(timeline)
 		}
-		
-		let timeline = Timeline(entries: entries, policy: .atEnd)
-		completion(timeline)
 	}
 }
 
@@ -40,15 +53,13 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
 	let date: Date
-	let emoji: String
+	let repoData: RepositoriesData
 }
 
 // MARK: - RepoStreakWidgetEntryVie
 
 struct RepoStreakWidgetEntryView : View {
 	var entry: Provider.Entry
-	let pushedToday = true
-	let streakDuration = 5
 	let repoPushed = "Coding done for today!"
 	let repoNotPushed = "Go code!"
 	
@@ -57,19 +68,17 @@ struct RepoStreakWidgetEntryView : View {
 			HStack(spacing: 10) {
 				Image(systemName: "flame")
 					.font(.largeTitle)
-					.foregroundStyle(pushedToday ? .orange : .gray)
+					.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
 				
-				Text("\(streakDuration)")
+				Text("\(entry.repoData.mainDuration)")
 					.font(.largeTitle)
-					.foregroundStyle(pushedToday ? .orange : .gray)
+					.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
 			}
 			
-			Text(pushedToday ? repoPushed : repoNotPushed)
+			Text(entry.repoData.mainExtended ? repoPushed : repoNotPushed)
 				.font(.headline)
-				.foregroundStyle(pushedToday ? .green : .red)
+				.foregroundStyle(entry.repoData.mainExtended ? .green : .red)
 				.multilineTextAlignment(.center)
-			
-			
 		}
 	}
 }
@@ -99,5 +108,5 @@ struct RepoStreakWidget: Widget {
 #Preview(as: .systemSmall) {
 	RepoStreakWidget()
 } timeline: {
-	SimpleEntry(date: .now, emoji: "😀")
+	SimpleEntry(date: .now, repoData: RepositoriesData())
 }

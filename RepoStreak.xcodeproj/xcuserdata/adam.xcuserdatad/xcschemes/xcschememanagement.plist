@@ -7,12 +7,25 @@
 		<key>RepoStreak.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>RepoStreakWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>666D72522AC0694D004DD77A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66AC1CB92AF44C8B0064D16A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

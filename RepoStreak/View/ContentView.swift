@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct ContentView: View {
+	@Environment(\.scenePhase) var scenePhase
 	@StateObject var contentViewModel = ContentViewModel()
 	
 	private let alertTitle = "Something went wrong."
@@ -65,6 +67,11 @@ struct ContentView: View {
 				Task {
 					await contentViewModel.performURLRequest()
 				}
+			}
+		}
+		.onChange(of: scenePhase) {
+			if scenePhase == .background {
+				WidgetCenter.shared.reloadAllTimelines()
 			}
 		}
 	}

@@ -13,26 +13,28 @@ fileprivate enum UserDefaultsKeys: String {
 }
 
 class UserSettings: ObservableObject {
+	private let suiteName = "group.com.admi126n.RepoStreak"
+	
     @Published var username: String {
         didSet {
-            UserDefaults.standard.setValue(username, forKey: UserDefaultsKeys.username.rawValue)
+			UserDefaults(suiteName: suiteName)?.setValue(username, forKey: UserDefaultsKeys.username.rawValue)
         }
     }
     
     @Published var mainRepository: String {
         didSet {
-            UserDefaults.standard.setValue(mainRepository, forKey: UserDefaultsKeys.mainRepository.rawValue)
+			UserDefaults(suiteName: suiteName)?.setValue(mainRepository, forKey: UserDefaultsKeys.mainRepository.rawValue)
         }
     }
     
     init() {
-        if let safeUsername = UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue) {
+        if let safeUsername = UserDefaults(suiteName: suiteName)?.string(forKey: UserDefaultsKeys.username.rawValue) {
             username = safeUsername
         } else {
             username = "Admi126n"
         }
         
-        if let safeRepositoryName = UserDefaults.standard.string(forKey: UserDefaultsKeys.mainRepository.rawValue) {
+        if let safeRepositoryName = UserDefaults(suiteName: suiteName)?.string(forKey: UserDefaultsKeys.mainRepository.rawValue) {
             mainRepository = safeRepositoryName
         } else {
             mainRepository = "100DaysOfSwiftUI"

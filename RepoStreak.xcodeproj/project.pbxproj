@@ -13,6 +13,10 @@
 		666D725B2AC0694E004DD77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666D725A2AC0694E004DD77A /* Assets.xcassets */; };
 		666D725E2AC0694E004DD77A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666D725D2AC0694E004DD77A /* Preview Assets.xcassets */; };
 		666D72B92AC0AECD004DD77A /* ValidatorErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */; };
+		667A7B3C2AF5944D0003C852 /* ValidatorErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */; };
+		667A7B3D2AF594520003C852 /* ReposFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669EAB1E2ACC523300367872 /* ReposFetcher.swift */; };
+		667A7B3E2AF594540003C852 /* StreakCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B3592AC8C2B700C28BB3 /* StreakCounter.swift */; };
+		667A7B3F2AF594580003C852 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B34A2AC8B24000C28BB3 /* UserSettings.swift */; };
 		6687B3492AC8AB3100C28BB3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B3482AC8AB3100C28BB3 /* SettingsView.swift */; };
 		6687B34B2AC8B24000C28BB3 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B34A2AC8B24000C28BB3 /* UserSettings.swift */; };
 		6687B3532AC8BFB200C28BB3 /* RepoStreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6687B3522AC8BFB200C28BB3 /* RepoStreakTests.swift */; };
@@ -67,6 +71,7 @@
 		666D725A2AC0694E004DD77A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		666D725D2AC0694E004DD77A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorErrors.swift; sourceTree = "<group>"; };
+		667A7B402AF5951E0003C852 /* RepoStreak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RepoStreak.entitlements; sourceTree = "<group>"; };
 		6687B3482AC8AB3100C28BB3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6687B34A2AC8B24000C28BB3 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		6687B3502AC8BFB200C28BB3 /* RepoStreakTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepoStreakTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +142,7 @@
 		666D72552AC0694D004DD77A /* RepoStreak */ = {
 			isa = PBXGroup;
 			children = (
+				667A7B402AF5951E0003C852 /* RepoStreak.entitlements */,
 				666D72562AC0694D004DD77A /* RepoStreakApp.swift */,
 				66FD92AB2AF30B3900EFA10E /* Model */,
 				66FD92AA2AF30B2500EFA10E /* View */,
@@ -372,7 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */,
+				667A7B3F2AF594580003C852 /* UserSettings.swift in Sources */,
 				66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */,
+				667A7B3E2AF594540003C852 /* StreakCounter.swift in Sources */,
+				667A7B3C2AF5944D0003C852 /* ValidatorErrors.swift in Sources */,
+				667A7B3D2AF594520003C852 /* ReposFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +527,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RepoStreak/RepoStreak.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RepoStreak/Preview Content\"";
@@ -547,6 +558,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RepoStreak/RepoStreak.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RepoStreak/Preview Content\"";
@@ -612,6 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = RepoStreakWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 474G49AKB2;
@@ -639,6 +652,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = RepoStreakWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 474G49AKB2;
