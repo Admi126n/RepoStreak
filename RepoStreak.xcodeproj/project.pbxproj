@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC1CC32AF44C8B0064D16A /* RepoStreakWidget.swift */; };
+		666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */; };
+		666BC71D2AFEEAEE0092E4BF /* MediumSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */; };
+		666BC71E2AFEEAF00092E4BF /* LargeSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */; };
+		666BC7232AFEF1030092E4BF /* MainRepoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7212AFEF0E80092E4BF /* MainRepoWidget.swift */; };
 		666D72572AC0694D004DD77A /* RepoStreakApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D72562AC0694D004DD77A /* RepoStreakApp.swift */; };
 		666D72592AC0694D004DD77A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D72582AC0694D004DD77A /* ContentView.swift */; };
 		666D725B2AC0694E004DD77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666D725A2AC0694E004DD77A /* Assets.xcassets */; };
@@ -65,6 +69,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumSizeView.swift; sourceTree = "<group>"; };
+		666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSizeView.swift; sourceTree = "<group>"; };
+		666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSizeView.swift; sourceTree = "<group>"; };
+		666BC7212AFEF0E80092E4BF /* MainRepoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepoWidget.swift; sourceTree = "<group>"; };
 		666D72532AC0694D004DD77A /* RepoStreak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepoStreak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		666D72562AC0694D004DD77A /* RepoStreakApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoStreakApp.swift; sourceTree = "<group>"; };
 		666D72582AC0694D004DD77A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +126,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		666BC7202AFEF00B0092E4BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				666BC7212AFEF0E80092E4BF /* MainRepoWidget.swift */,
+				666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */,
+				666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */,
+				666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		666D724A2AC0694D004DD77A = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +200,7 @@
 		66AC1CC02AF44C8B0064D16A /* RepoStreakWidget */ = {
 			isa = PBXGroup;
 			children = (
+				666BC7202AFEF00B0092E4BF /* Views */,
 				66AC1CC12AF44C8B0064D16A /* RepoStreakWidgetBundle.swift */,
 				66AC1CC32AF44C8B0064D16A /* RepoStreakWidget.swift */,
 				66AC1CC52AF44C8D0064D16A /* Assets.xcassets */,
@@ -377,11 +397,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				666BC71E2AFEEAF00092E4BF /* LargeSizeView.swift in Sources */,
 				664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */,
+				666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */,
 				667A7B3F2AF594580003C852 /* UserSettings.swift in Sources */,
+				666BC7232AFEF1030092E4BF /* MainRepoWidget.swift in Sources */,
 				66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */,
 				667A7B3E2AF594540003C852 /* StreakCounter.swift in Sources */,
 				667A7B3C2AF5944D0003C852 /* ValidatorErrors.swift in Sources */,
+				666BC71D2AFEEAEE0092E4BF /* MediumSizeView.swift in Sources */,
 				667A7B3D2AF594520003C852 /* ReposFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

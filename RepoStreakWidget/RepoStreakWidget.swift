@@ -59,26 +59,20 @@ struct SimpleEntry: TimelineEntry {
 // MARK: - RepoStreakWidgetEntryVie
 
 struct RepoStreakWidgetEntryView : View {
+	@Environment(\.widgetFamily) var widgetFamily
+	
 	var entry: Provider.Entry
-	let repoPushed = "Coding done for today!"
-	let repoNotPushed = "Go code!"
 	
 	var body: some View {
-		VStack {
-			HStack(spacing: 10) {
-				Image(systemName: "flame")
-					.font(.largeTitle)
-					.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
-				
-				Text("\(entry.repoData.mainDuration)")
-					.font(.largeTitle)
-					.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
-			}
-			
-			Text(entry.repoData.mainExtended ? repoPushed : repoNotPushed)
-				.font(.headline)
-				.foregroundStyle(entry.repoData.mainExtended ? .green : .red)
-				.multilineTextAlignment(.center)
+		switch widgetFamily {
+		case .systemSmall:
+			SmallSizeView(entry: entry)
+		case .systemMedium:
+			MediumSizeView(entry: entry)
+		case .systemLarge:
+			LargeSizeView(entry: entry)
+		default:
+			Text("Not implemented")
 		}
 	}
 }
