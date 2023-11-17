@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct MainRepoWidget: View {
-	private let repoPushed = "Coding done for today!"
-	private let repoNotPushed = "Go code!"
-	
 	var entry: SimpleEntry
 	
 	var body: some View {
@@ -25,7 +22,7 @@ struct MainRepoWidget: View {
 					.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
 			}
 			
-			Text(entry.repoData.mainExtended ? repoPushed : repoNotPushed)
+			Text(entry.repoData.mainExtended ? I18n.streakExtended : I18n.streakNotExtended)
 				.font(.headline)
 				.foregroundStyle(entry.repoData.mainExtended ? .green : .red)
 				.multilineTextAlignment(.center)

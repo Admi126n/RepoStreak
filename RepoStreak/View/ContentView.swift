@@ -12,8 +12,6 @@ struct ContentView: View {
 	@Environment(\.scenePhase) var scenePhase
 	@StateObject var contentViewModel = ContentViewModel()
 	
-	private let alertTitle = "Something went wrong."
-	
 	var body: some View {
 		NavigationStack {
 			VStack {
@@ -61,7 +59,7 @@ struct ContentView: View {
 		}
 		.preferredColorScheme(.dark)
 		.task { await contentViewModel.performURLRequest() }
-		.alert(alertTitle, isPresented: $contentViewModel.showAlert) { }
+		.alert(I18n.alertTitle, isPresented: $contentViewModel.showAlert) { }
 		.sheet(isPresented: $contentViewModel.showSheet) {
 			SettingsView(userSettings: contentViewModel.userSettings) {
 				Task {

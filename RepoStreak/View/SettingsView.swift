@@ -12,14 +12,13 @@ struct SettingsView: View {
 	@ObservedObject var userSettings: UserSettings
 	@StateObject var settingsViewModel = SettingsViewModel()
 	
-	private let alertTitle = "Something went wrong."
 	let onSave: () -> ()
     
     var body: some View {
         NavigationStack {
             Form {
-                Section("Username") {
-                    TextField("Username", text: Binding(
+				Section(I18n.username) {
+					TextField(I18n.username, text: Binding(
                         get: {
 							userSettings.username
                         }, set: {
@@ -38,21 +37,21 @@ struct SettingsView: View {
                         Text($0)
                     }
                 } label: {
-                    Text("Main repository")
+					Text(I18n.mainRepository)
                 }
                 .pickerStyle(.inline)
             }
             .preferredColorScheme(.dark)
-            .navigationTitle("Settings")
+			.navigationTitle(I18n.settings)
             .toolbar {
-                Button("Save") {
+				Button(I18n.save) {
 					onSave()
 					dismiss()
                 }
             }
         }
         .task { await settingsViewModel.performURLRequest() }
-		.alert(alertTitle, isPresented: $settingsViewModel.showAlert) { }
+		.alert(I18n.alertTitle, isPresented: $settingsViewModel.showAlert) { }
     }
 }
 

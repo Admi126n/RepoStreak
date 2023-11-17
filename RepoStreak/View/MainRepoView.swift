@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct MainRepoView: View {
-	private let repoPushed = "Coding done for today!"
-	private let repoNotPushed = "Go code!"
-	
 	let streakDuration: Int
 	let pushedToday: Bool
 	
@@ -26,7 +23,7 @@ struct MainRepoView: View {
 					.foregroundStyle(pushedToday ? .orange : .gray)
 			}
 			
-			Text(pushedToday ? repoPushed : repoNotPushed)
+			Text(pushedToday ? I18n.streakExtended : I18n.streakNotExtended)
 				.font(.title)
 				.foregroundStyle(pushedToday ? .green : .red)
 		}
