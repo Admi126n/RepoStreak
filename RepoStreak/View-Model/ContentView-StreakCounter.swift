@@ -15,7 +15,11 @@ extension ContentView {
 		@Published var showAlert = false
 		@Published var showSheet = false
 		
+		@State private var hapticFeedback = UINotificationFeedbackGenerator()
+		
 		func performURLRequest() async {
+			hapticFeedback.prepare()
+			
 			let tempData = await StreakCounter.checkStreakForReposList(
 				user: userSettings.username,
 				mainRepo: userSettings.mainRepository
@@ -29,6 +33,8 @@ extension ContentView {
 					repositoriesData = tempData
 				}
 			}
+			
+			hapticFeedback.notificationOccurred(.success)
 		}
 	}
 }
