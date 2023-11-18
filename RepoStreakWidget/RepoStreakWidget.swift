@@ -72,7 +72,7 @@ struct RepoStreakWidgetEntryView : View {
 		case .systemLarge:
 			LargeSizeView(entry: entry)
 		default:
-			Text("Not implemented")
+			Text(I18n.notImplemented)
 		}
 	}
 }
@@ -92,14 +92,26 @@ struct RepoStreakWidget: Widget {
 					.background(Color(white: 0.15))
 			}
 		}
-		.configurationDisplayName("My Widget")
-		.description("This is an example widget.")
+		.configurationDisplayName(I18n.configurationDisplayName)
+		.description(I18n.widgetDescription)
 	}
 }
 
 // MARK: - Preview
 
-#Preview(as: .systemSmall) {
+#Preview("Small", as: .systemSmall) {
+	RepoStreakWidget()
+} timeline: {
+	SimpleEntry(date: .now, repoData: RepositoriesData())
+}
+
+#Preview("Medium", as: .systemMedium) {
+	RepoStreakWidget()
+} timeline: {
+	SimpleEntry(date: .now, repoData: RepositoriesData())
+}
+
+#Preview("Large", as: .systemLarge) {
 	RepoStreakWidget()
 } timeline: {
 	SimpleEntry(date: .now, repoData: RepositoriesData())

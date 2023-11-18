@@ -28,6 +28,23 @@
         }
       }
     },
+    "configuration.display.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RepoStreak widget"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widżet RepoStreak"
+          }
+        }
+      }
+    },
     "main.repository" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -45,11 +62,22 @@
         }
       }
     },
-    "My Widget" : {
-
-    },
-    "Not implemented" : {
-
+    "not.implemented" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not implemented"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie zaimplementowano"
+          }
+        }
+      }
     },
     "save" : {
       "extractionState" : "manual",
@@ -119,9 +147,6 @@
         }
       }
     },
-    "This is an example widget." : {
-
-    },
     "username" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -135,6 +160,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nazwa użytkownika"
+          }
+        }
+      }
+    },
+    "widget.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is an example widget"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przykładowy widżet"
           }
         }
       }
