@@ -1,9 +1,34 @@
-# GitHub repo streak checker
+# RepoStreak
 
-App fetches GitHub repository info via GitHub API and checks value of 'pushed_at'. It compares this date with today's date with granularity to day and based on this comparsion decides if repo has any pushes on current day.
+With this app you can track commits streak on your public GitHub repositories. All you need to do is provide your username and choose main repository.
 
-If repo has pushes app displays fire symbol and if it doesn't have any pushes it tells you to go and code.
+## Main screen
 
-I'm also going to create widget for this app.
+Here at the middle of the screen you can see your main reporitory streak and at the bottom all other repositories.
+
+<p align="center">
+<img src=Documentation/mainScreen.png width=70% height=auto />
+</p>
+
+## Settings screen
+
+Here you provide your username and choose main repository.
+
+<p align="center">
+<img src=Documentation/settingsScreen.png width=70% heihgt=auto />
+</p>
+
+## Widgets
+
+There are also available widgets in three sizes.
+
+|Small|Medium|Large|
+|:-------------:|:-------------:|:-------------:|
+| <img src=Documentation/smallWidget.png width=auto height=auto />|<img src=Documentation/mediumWidget.png width=auto height=auto />|<img src=Documentation/largeWidget.png width=auto height=auto />|
+
+
+##
 
 I've created this app because of 100 Days Of SwiftUI, to remind me about coding every day.
+
+I'd like to add notifications which will notify user every evening if main repository streak isn't extended and maybe also lock screen widget.

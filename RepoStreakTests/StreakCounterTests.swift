@@ -8,34 +8,7 @@
 import XCTest
 @testable import RepoStreak
 
-final class RepoStreakTests: XCTestCase {
-//    func testStreakCounter_WhenValidLinkGiven_ShouldReturnarrayOfCommitsDates() async {
-//        do {
-//            let commits: [Date] = try await StreakCounter.getCommitsDates("admi126n", "repostreak")
-//            XCTAssertTrue(!commits.isEmpty, "Commits list should not be empty")
-//        } catch {
-//            XCTFail("An error ocured during getting commits, error description: \(error)")
-//        }
-//    }
-    
-//    func testStreakCounter_WhenInvalidRepositoryDataGiven_ShouldThrowAnError() async {
-//        do {
-//            _ = try await StreakCounter.getCommitsDates("", "")
-//            XCTFail("StreakCounter.getCommitsDates should have failed throw an cannotDecodeData error")
-//        } catch {
-//            XCTAssertEqual(error as! ValidatorErrors, ValidatorErrors.cannotDecodeData, "Wrong error thrown")
-//        }
-//    }
-    
-//    func testStreakCounter_WhenEmptyReposirotyGiven_ShouldThrowAnError() async {
-//        do {
-//            _ = try await StreakCounter.getCommitsDates("admi126n", "test")
-//            XCTFail("StreakCounter.getCommitsDates should have failed throw an cannotDecodeData error")
-//        } catch {
-//            XCTAssertEqual(error as! ValidatorErrors, ValidatorErrors.cannotDecodeData, "Wrong error thrown")
-//        }
-//    }
-    
+final class StreakCounterTests: XCTestCase {    
     func testStreakCounter_WhenExtendedOneDayStreakGiven_ShouldReturnOne() {
         let dates: [Date] = [Date.now]
         
@@ -124,6 +97,20 @@ final class RepoStreakTests: XCTestCase {
 		
 		XCTAssertEqual(streak, 2, "Streak duration should be equal to 2, but is equal to \(streak)")
 		XCTAssertFalse(extended)
+	}
+	
+	func testStreakCounter_WhenNotExtendedRandomDaysGiven_ShouldReturnOne() {
+		let dates: [Date] = [.now,
+							 Calendar.current.date(byAdding: .day, value: -3, to: Date.now)!,
+							 Calendar.current.date(byAdding: .day, value: -4, to: Date.now)!,
+							 Calendar.current.date(byAdding: .day, value: -6, to: Date.now)!,
+							 Calendar.current.date(byAdding: .day, value: -9, to: Date.now)!
+		]
+		
+		let (streak, extended) = StreakCounter.countStreak(for: dates)
+		
+		XCTAssertEqual(streak, 1, "Streak duration should be equal to 1, but is equal to \(streak)")
+		XCTAssertTrue(extended)
 	}
 	
 }

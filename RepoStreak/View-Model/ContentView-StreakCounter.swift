@@ -26,6 +26,8 @@ extension ContentView {
 			) {
 				print($0.localizedDescription)
 				showAlert = true
+				hapticFeedback.notificationOccurred(.error)
+				return
 			}
 			
 			Task { @MainActor in

@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>RepoStreakTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>RepoStreakWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>666D72522AC0694D004DD77A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6687B34F2AC8BFB200C28BB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
