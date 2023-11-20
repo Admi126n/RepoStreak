@@ -71,6 +71,8 @@ struct RepoStreakWidgetEntryView : View {
 			MediumSizeView(entry: entry)
 		case .systemLarge:
 			LargeSizeView(entry: entry)
+		case .accessoryCircular:
+			LockScreenWidget(entry: entry)
 		default:
 			Text(I18n.notImplemented)
 		}
@@ -92,6 +94,7 @@ struct RepoStreakWidget: Widget {
 					.background(Color(white: 0.15))
 			}
 		}
+		.supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryCircular])
 		.configurationDisplayName(I18n.configurationDisplayName)
 		.description(I18n.widgetDescription)
 	}
@@ -112,6 +115,12 @@ struct RepoStreakWidget: Widget {
 }
 
 #Preview("Large", as: .systemLarge) {
+	RepoStreakWidget()
+} timeline: {
+	SimpleEntry(date: .now, repoData: RepositoriesData())
+}
+
+#Preview("Lock screen", as: .accessoryCircular) {
 	RepoStreakWidget()
 } timeline: {
 	SimpleEntry(date: .now, repoData: RepositoriesData())

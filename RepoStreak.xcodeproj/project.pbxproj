@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6626696F2B0BB13C00B64490 /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */; };
 		664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC1CC32AF44C8B0064D16A /* RepoStreakWidget.swift */; };
 		666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */; };
 		666BC71D2AFEEAEE0092E4BF /* MediumSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
 		666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumSizeView.swift; sourceTree = "<group>"; };
 		666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSizeView.swift; sourceTree = "<group>"; };
 		666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSizeView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */,
 				666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */,
 				666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */,
+				6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,9 +173,9 @@
 			isa = PBXGroup;
 			children = (
 				667A7B402AF5951E0003C852 /* RepoStreak.entitlements */,
+				66FD92AB2AF30B3900EFA10E /* Model */,
 				66A6A0C92B07975200DCC638 /* Localization */,
 				666D72562AC0694D004DD77A /* RepoStreakApp.swift */,
-				66FD92AB2AF30B3900EFA10E /* Model */,
 				66FD92AA2AF30B2500EFA10E /* View */,
 				66FD92AC2AF30B4B00EFA10E /* View-Model */,
 				666D725A2AC0694E004DD77A /* Assets.xcassets */,
@@ -339,7 +342,7 @@
 				};
 			};
 			buildConfigurationList = 666D724E2AC0694D004DD77A /* Build configuration list for PBXProject "RepoStreak" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -431,6 +434,7 @@
 				667A7B3C2AF5944D0003C852 /* ValidatorErrors.swift in Sources */,
 				666BC71D2AFEEAEE0092E4BF /* MediumSizeView.swift in Sources */,
 				667A7B3D2AF594520003C852 /* ReposFetcher.swift in Sources */,
+				6626696F2B0BB13C00B64490 /* LockScreenWidget.swift in Sources */,
 				66A6A0CC2B07978000DCC638 /* Internationalizations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
