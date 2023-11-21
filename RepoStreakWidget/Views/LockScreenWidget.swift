@@ -11,17 +11,25 @@ fileprivate struct ExtendedView: View {
 	let duration: Int
 	
 	var body: some View {
-		VStack(spacing: 5) {
+		ZStack {
 			Image(systemName: "flame")
 				.resizable()
 				.scaledToFit()
 			
-			Text("\(duration)")
-				.font(.headline)
-				.bold()
-				.padding(.horizontal)
-				.background(.black)
-				.clipShape(.rect(cornerRadius: 10))
+			Image(systemName: "flame.fill")
+				.resizable()
+				.scaledToFit()
+			
+			VStack {
+				Spacer()
+				Spacer()
+				
+				Text("\(duration)")
+					.font(.headline)
+					.blendMode(.destinationOut)
+				
+				Spacer()
+			}
 		}
 	}
 }
