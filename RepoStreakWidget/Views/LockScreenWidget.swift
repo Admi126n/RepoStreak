@@ -25,7 +25,8 @@ fileprivate struct ExtendedView: View {
 				Spacer()
 				
 				Text("\(duration)")
-					.font(.headline)
+					.bold()
+					.font(.system(size: 20))
 					.blendMode(.destinationOut)
 				
 				Spacer()

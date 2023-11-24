@@ -22,7 +22,7 @@ struct MediumSizeView: View {
 				VStack(alignment: .leading) {
 					Spacer()
 					
-					ForEach(reposList, id: \.name) { repo in
+					ForEach(reposList.prefix(5), id: \.name) { repo in
 						HStack {
 							Image(systemName: "flame")
 								.font(.caption)

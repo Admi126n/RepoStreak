@@ -22,7 +22,7 @@ struct LargeSizeView: View {
 				VStack(alignment: .leading) {
 					Spacer()
 					
-					ForEach(reposList, id: \.name) { repo in
+					ForEach(reposList.prefix(5), id: \.name) { repo in
 						HStack {
 							HStack(spacing: 3) {
 								Image(systemName: "flame")

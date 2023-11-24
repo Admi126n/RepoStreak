@@ -25,15 +25,19 @@ struct ContentView: View {
 				Spacer()
 				
 				if let reposList = contentViewModel.repositoriesData.reposList {
-					ForEach(reposList, id: \.name) { repo in
-						RepoCellView(
-							name: repo.name,
-							streakDuration: repo.duration,
-							pushedToday: repo.extended
-						)
-						
+					ScrollView {
+						ForEach(reposList, id: \.name) { repo in
+							RepoCellView(
+								name: repo.name,
+								streakDuration: repo.duration,
+								pushedToday: repo.extended
+							)
+						}
 					}
+					.scrollIndicators(.automatic)
+					.frame(height: 200)
 				}
+				
 			}
 			.symbolEffect(.bounce, value: contentViewModel.repositoriesData.mainDuration)
 			.padding()
