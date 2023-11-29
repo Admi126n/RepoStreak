@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6626696F2B0BB13C00B64490 /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */; };
 		664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC1CC32AF44C8B0064D16A /* RepoStreakWidget.swift */; };
+		664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6054C2B16643500C26F30 /* CommitsFetcher.swift */; };
 		666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */; };
 		666BC71D2AFEEAEE0092E4BF /* MediumSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */; };
 		666BC71E2AFEEAF00092E4BF /* LargeSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */; };
@@ -437,6 +438,7 @@
 				664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */,
 				666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */,
 				667A7B3F2AF594580003C852 /* UserSettings.swift in Sources */,
+				664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */,
 				666BC7232AFEF1030092E4BF /* MainRepoWidget.swift in Sources */,
 				66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */,
 				667A7B3E2AF594540003C852 /* StreakCounter.swift in Sources */,

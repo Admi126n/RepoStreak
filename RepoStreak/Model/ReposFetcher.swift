@@ -10,6 +10,12 @@ import Foundation
 /// Contains methods for fetching list of public repositories for specified user.
 struct ReposFetcher {
 	
+	/// Empty private init to prevent creating instances of this struct
+	///
+	/// ReposFetcher contains only static methods so instances are unnecessary.
+	private init() { }
+	
+	
 	/// Creates URL for GitHub API request
 	/// - Parameter user: String with GitHub username
 	/// - Returns: URL for GitHub API request
@@ -27,111 +33,58 @@ struct ReposFetcher {
 	}
 	
 	
-	/// Returns list with available public repositories for provided user. If API request fails returns an error
+	/// Returns all not archived repositories names from given repositories list
+	/// - Parameter repos: List of both archived and not archived repositories
+	/// - Returns: List of not archoved repositories names
+	private static func getActiveRepositoriesNames(from repos: [Repository]) -> [String] {
+		let filteredRepos = repos.filter{ $0.isActive() }
+		
+		return filteredRepos.map { $0.name }
+	}
+	
+	
+	/// Returns list with all public repositories for provided `user`. If API request fails returns an error
 	/// - Parameter user: String with GitHub username
-	/// - Returns: List of
-	static func getRepositoriesNames(for user: String) async -> Result<[String], Error> {
+	/// - Returns: List of fetched repositories
+	private static func getPublicRepositories(for user: String) async -> Result<[Repository], Error> {
 		do {
 			let url = try buildLink(for: user)
 			let fetchedData: [Repository] = try await url.fetchData()
 			
-			return .success(getNames(from: fetchedData))
+			return .success(fetchedData)
 		} catch {
 			return .failure(error)
 		}
 	}
 	
-	@available(*, deprecated, message: "use URL.fetchData() instead")
-	private static func fetchData<T: Codable>(from link: String, using decoder: JSONDecoder = JSONDecoder()) async throws -> T {
-		guard let safeURL = URL(string: link) else {
-			throw URLError(.badURL)
-		}
+	
+	/// Returns names of all available public not archived repositories for provided `user`. If request to GitHub API fails returns an error
+	/// - Parameter user: String with GitHub username
+	/// - Returns: List of repositories names
+	static func getPublicActiveRepositoriesNames(for user: String) async -> Result<[String], Error> {
+		let fetchedData = await getPublicRepositories(for: user)
 		
-		guard let (data, _) = try? await URLSession.shared.data(from: safeURL) else {
-			throw URLError(.badServerResponse)
+		switch fetchedData {
+		case .success(let success):
+			return .success(getActiveRepositoriesNames(from: success))
+		case .failure(let failure):
+			return .failure(failure)
 		}
-		
-		guard let decodedData = try? decoder.decode(T.self, from: data) else {
-			throw ValidatorErrors.cannotDecodeData
-		}
-		
-		return decodedData
 	}
 	
-	@available(*, deprecated, message: "method will be replaced by CommitsFetcher.getDates")
-	private static func getDates(from commits: [CommitData]) -> [Date] {
-		var dates: [Date] = []
-		
-		for commit in commits {
-			dates.append(commit.commit.author.date)
-		}
-		
-		return dates
-	}
-	
-	private static func getNames(from repos: [Repository]) -> [String] {
-		var result: [String] = []
-		
-		for repo in repos {
-			if !repo.archived {
-				result.append(repo.name)
-			}
-		}
-		
-		return result
-	}
-	
-	/// Deprecated, use ``getRepositoriesNames(for:)`` instead
-	@available(*, deprecated, message: "method will be replaced by getRepositoriesNames")
-	static func getRepositories(for user: String, _ compleationHandler: (Error) -> ()) async -> [String] {
-		let link = "https://api.github.com/users/\(user)/repos"
-		var fetchedData: [Repository] = []
-		
-		do {
-			fetchedData = try await fetchData(from: link)
-		} catch {
-			compleationHandler(error)
-		}
-		
-		return getNames(from: fetchedData)
-	}
-	
-	@available(*, deprecated, message: "method will be replaced by CommitsFetcher.getCommitsDates")
-	static func getCommitsDates(_ user: String, _ repo: String, _ compleationHandler: (Error) -> ()) async -> [Date] {
-		let link = "https://api.github.com/repos/\(user)/\(repo)/commits?per_page=100"
-		
-		let decoder = JSONDecoder()
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-		decoder.dateDecodingStrategy = .formatted(dateFormatter)
-		
-		var fetchedData: [CommitData] = []
-		
-		do {
-			fetchedData = try await ReposFetcher.fetchData(from: link, using: decoder)
-		} catch {
-			compleationHandler(error)
-		}
-		
-		return getDates(from: fetchedData)
-	}
 }
 
 // MARK: - Structs needed for decoding fetched data
 
-fileprivate struct CommitData: Codable {
-	let commit: Commit
-}
-
-fileprivate struct Commit: Codable {
-	let author: Author
-}
-
-fileprivate struct Author: Codable {
-	let date: Date
-}
-
+/// Struct needed for decoding data fetched from GitHub API
 fileprivate struct Repository: Codable {
+	
 	let name: String
 	let archived: Bool
+	
+	
+	/// - Returns: True is repository is not archived
+	func isActive() -> Bool {
+		!archived
+	}
 }

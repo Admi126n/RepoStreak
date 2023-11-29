@@ -17,17 +17,19 @@ extension SettingsView {
 		func performURLRequest() async {
 			hapticFeedback.prepare()
 			
-			let tempData = await ReposFetcher.getRepositories(for: UserSettings().username) {
-				print($0.localizedDescription)
+			let tempData = await ReposFetcher.getPublicActiveRepositoriesNames(for: UserSettings().username)
+			
+			switch tempData {
+			case .success(let success):
+				Task { @MainActor in
+					withAnimation {
+						repositories = success
+					}
+				}
+			case .failure(let failure):
+				print(failure.localizedDescription)
 				showAlert = true
 				hapticFeedback.notificationOccurred(.error)
-				return
-			}
-			
-			Task { @MainActor in
-				withAnimation {
-					repositories = tempData
-				}
 			}
 		}
 	}

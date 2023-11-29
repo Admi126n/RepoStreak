@@ -82,27 +82,33 @@ struct StreakCounter {
 		var reposData = RepositoriesData()
 		
 		var reposList: [RepoData] = []
-		let fetchedRepos = await ReposFetcher.getRepositories(for: user) { error in
-			compleationHandler(error)
-		}
+		let fetchedRepos = await ReposFetcher.getPublicActiveRepositoriesNames(for: user)
 		
-		for repo in fetchedRepos {
-			let commitsDates = await ReposFetcher.getCommitsDates(user, repo) { error in
-				compleationHandler(error)
+		switch fetchedRepos {
+		case .success(let success):
+			for repo in success {
+				let commitsDates = await CommitsFetcher.getCommitsDates(user, repo)
+				
+				switch commitsDates {
+				case .success(let success):
+					let (duration, extended) = countStreak(for: success)
+					
+					if repo == mainRepo {
+						reposData.mainRepoName = repo
+						reposData.mainDuration = duration
+						reposData.mainExtended = extended
+					} else {
+						reposList.append(RepoData(name: repo, duration: duration, extended: extended))
+					}
+				case .failure(_):
+					continue
+				}
 			}
 			
-			let (duration, extended) = countStreak(for: commitsDates)
-			
-			if repo == mainRepo {
-				reposData.mainRepoName = repo
-				reposData.mainDuration = duration
-				reposData.mainExtended = extended
-			} else {
-				reposList.append(RepoData(name: repo, duration: duration, extended: extended))
-			}
+			reposData.reposList = reposList
+			return reposData
+		case .failure(_):
+			return RepositoriesData()
 		}
-		
-		reposData.reposList = reposList
-		return reposData
 	}
 }
