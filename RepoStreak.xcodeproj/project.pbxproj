@@ -46,6 +46,7 @@
 		66B6054D2B16643500C26F30 /* CommitsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6054C2B16643500C26F30 /* CommitsFetcher.swift */; };
 		66D0432D2B18E72F000C01B3 /* FetchingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0432C2B18E72F000C01B3 /* FetchingType.swift */; };
 		66D0432E2B18E971000C01B3 /* FetchingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0432C2B18E72F000C01B3 /* FetchingType.swift */; };
+		66FAE30B2B18F45C00C69561 /* BranchesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664D49952B179B250054055E /* BranchesFetcher.swift */; };
 		66FD92AE2AF30B8300EFA10E /* ContentView-StreakCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD92AD2AF30B8300EFA10E /* ContentView-StreakCounter.swift */; };
 		66FD92B02AF30B9700EFA10E /* SettingsView-ReposFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD92AF2AF30B9700EFA10E /* SettingsView-ReposFetcher.swift */; };
 /* End PBXBuildFile section */
@@ -193,10 +194,10 @@
 		666D72552AC0694D004DD77A /* RepoStreak */ = {
 			isa = PBXGroup;
 			children = (
-				667A7B402AF5951E0003C852 /* RepoStreak.entitlements */,
-				66FD92AB2AF30B3900EFA10E /* Model */,
-				66A6A0C92B07975200DCC638 /* Localization */,
 				666D72562AC0694D004DD77A /* RepoStreakApp.swift */,
+				667A7B402AF5951E0003C852 /* RepoStreak.entitlements */,
+				66A6A0C92B07975200DCC638 /* Localization */,
+				66FD92AB2AF30B3900EFA10E /* Model */,
 				66FD92AA2AF30B2500EFA10E /* View */,
 				66FD92AC2AF30B4B00EFA10E /* View-Model */,
 				666D725A2AC0694E004DD77A /* Assets.xcassets */,
@@ -458,6 +459,7 @@
 				66D0432E2B18E971000C01B3 /* FetchingType.swift in Sources */,
 				664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */,
 				666BC7232AFEF1030092E4BF /* MainRepoWidget.swift in Sources */,
+				66FAE30B2B18F45C00C69561 /* BranchesFetcher.swift in Sources */,
 				66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */,
 				667A7B3E2AF594540003C852 /* StreakCounter.swift in Sources */,
 				667A7B3C2AF5944D0003C852 /* ValidatorErrors.swift in Sources */,

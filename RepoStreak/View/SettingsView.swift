@@ -65,5 +65,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-	SettingsView(userSettings: UserSettings()) { }
+	SettingsView(userSettings: UserSettings.shared) { }
 }

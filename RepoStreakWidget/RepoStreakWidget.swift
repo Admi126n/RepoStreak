@@ -16,15 +16,10 @@ struct Provider: TimelineProvider {
 	}
 	
 	func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-		let userSettings = UserSettings()
+		let userSettings = UserSettings.shared
 				
 		Task {
-			let fetchedData = await StreakCounter.checkStreakForReposList(
-				user: userSettings.username,
-				mainRepo: userSettings.mainRepository
-			) {
-				print($0.localizedDescription)
-			}
+			let fetchedData = await StreakCounter.checkStreak(for: userSettings.username)
 			
 			let entry = SimpleEntry(date: .now, repoData: fetchedData)
 			completion(entry)
@@ -32,15 +27,11 @@ struct Provider: TimelineProvider {
 	}
 	
 	func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-		let userSettings = UserSettings()
+		let userSettings = UserSettings.shared
 		
 		Task {
-			let fetchedData = await StreakCounter.checkStreakForReposList(
-				user: userSettings.username,
-				mainRepo: userSettings.mainRepository
-			) {
-				print($0.localizedDescription)
-			}
+			let fetchedData = await StreakCounter.checkStreak(for: userSettings.username)
+			
 			let entry = SimpleEntry(date: .now, repoData: fetchedData)
 			let timeline = Timeline(entries: [entry], policy: .after(.now.advanced(by: 10)))
 			
