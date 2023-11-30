@@ -95,13 +95,16 @@ struct CommitsFetcher {
 // MARK: - Structs needed for decoding fetched data
 
 fileprivate struct CommitData: Codable {
+	
 	let commit: Commit
 }
 
 fileprivate struct Commit: Codable {
+	
 	let author: Author
 }
 
 fileprivate struct Author: Codable {
+	
 	let date: Date
 }
