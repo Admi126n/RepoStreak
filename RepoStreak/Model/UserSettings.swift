@@ -10,6 +10,7 @@ import Foundation
 fileprivate enum UserDefaultsKeys: String {
     case username
     case mainRepository
+	case fetchingType
 }
 
 class UserSettings: ObservableObject {
@@ -27,6 +28,14 @@ class UserSettings: ObservableObject {
         }
     }
     
+	@Published var fetchingType: FetchingType {
+		didSet {
+			if let encoded = try? JSONEncoder().encode(fetchingType) {
+				UserDefaults(suiteName: suiteName)?.setValue(encoded, forKey: UserDefaultsKeys.fetchingType.rawValue)
+			}
+		}
+	}
+	
     init() {
         if let safeUsername = UserDefaults(suiteName: suiteName)?.string(forKey: UserDefaultsKeys.username.rawValue) {
             username = safeUsername
@@ -37,7 +46,17 @@ class UserSettings: ObservableObject {
         if let safeRepositoryName = UserDefaults(suiteName: suiteName)?.string(forKey: UserDefaultsKeys.mainRepository.rawValue) {
             mainRepository = safeRepositoryName
         } else {
-            mainRepository = "100DaysOfSwiftUI"
+            mainRepository = "RepoStreak"
         }
+		
+		if let data = UserDefaults(suiteName: suiteName)?.data(forKey: UserDefaultsKeys.fetchingType.rawValue) {
+			if let safeFetchingType = try? JSONDecoder().decode(FetchingType.self, from: data) {
+				fetchingType = safeFetchingType
+				
+				return
+			}
+		}
+		
+		fetchingType = .defaultBranch
     }
 }

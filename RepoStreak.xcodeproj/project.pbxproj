@@ -44,6 +44,8 @@
 		66B6054A2B16632600C26F30 /* URL+fetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B605492B16632600C26F30 /* URL+fetchData.swift */; };
 		66B6054B2B1663E500C26F30 /* URL+fetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B605492B16632600C26F30 /* URL+fetchData.swift */; };
 		66B6054D2B16643500C26F30 /* CommitsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6054C2B16643500C26F30 /* CommitsFetcher.swift */; };
+		66D0432D2B18E72F000C01B3 /* FetchingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0432C2B18E72F000C01B3 /* FetchingType.swift */; };
+		66D0432E2B18E971000C01B3 /* FetchingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0432C2B18E72F000C01B3 /* FetchingType.swift */; };
 		66FD92AE2AF30B8300EFA10E /* ContentView-StreakCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD92AD2AF30B8300EFA10E /* ContentView-StreakCounter.swift */; };
 		66FD92B02AF30B9700EFA10E /* SettingsView-ReposFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD92AF2AF30B9700EFA10E /* SettingsView-ReposFetcher.swift */; };
 /* End PBXBuildFile section */
@@ -113,6 +115,7 @@
 		66AC1CC72AF44C8D0064D16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66B605492B16632600C26F30 /* URL+fetchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+fetchData.swift"; sourceTree = "<group>"; };
 		66B6054C2B16643500C26F30 /* CommitsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsFetcher.swift; sourceTree = "<group>"; };
+		66D0432C2B18E72F000C01B3 /* FetchingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingType.swift; sourceTree = "<group>"; };
 		66FD92AD2AF30B8300EFA10E /* ContentView-StreakCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-StreakCounter.swift"; sourceTree = "<group>"; };
 		66FD92AF2AF30B9700EFA10E /* SettingsView-ReposFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView-ReposFetcher.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,6 +271,7 @@
 				6687B34A2AC8B24000C28BB3 /* UserSettings.swift */,
 				6687B3592AC8C2B700C28BB3 /* StreakCounter.swift */,
 				666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */,
+				66D0432C2B18E72F000C01B3 /* FetchingType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -417,6 +421,7 @@
 			files = (
 				6687B3492AC8AB3100C28BB3 /* SettingsView.swift in Sources */,
 				6687B35A2AC8C2B700C28BB3 /* StreakCounter.swift in Sources */,
+				66D0432D2B18E72F000C01B3 /* FetchingType.swift in Sources */,
 				66A6A0CB2B07978000DCC638 /* Internationalizations.swift in Sources */,
 				66FD92B02AF30B9700EFA10E /* SettingsView-ReposFetcher.swift in Sources */,
 				66B6054D2B16643500C26F30 /* CommitsFetcher.swift in Sources */,
@@ -450,6 +455,7 @@
 				664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */,
 				666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */,
 				667A7B3F2AF594580003C852 /* UserSettings.swift in Sources */,
+				66D0432E2B18E971000C01B3 /* FetchingType.swift in Sources */,
 				664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */,
 				666BC7232AFEF1030092E4BF /* MainRepoWidget.swift in Sources */,
 				66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */,

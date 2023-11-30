@@ -29,7 +29,7 @@ struct CommitsFetcher {
 	///
 	/// API documentation:
 	/// https://docs.github.com/en/rest/commits/commits?apiVersion=2022-11-28#list-commits
-	private static func buildLink(for user: String, _ repo: String, _ sha: String? = nil) throws -> URL {
+	private static func buildLink(for user: String, _ repo: String, _ sha: String?) throws -> URL {
 		var urlString = "https://api.github.com/repos/\(user)/\(repo)/commits?per_page=100"
 		
 		if let sha = sha {
@@ -58,7 +58,7 @@ struct CommitsFetcher {
 	///   - repo: String with GitHub repository name
 	///   - branch: Optional string with branch name
 	/// - Returns: Commit data if request succeeds, otherwise error
-	private static func getCommits(for user: String, _ repo: String, _ branch: String? = nil) async -> Result<[CommitData], Error> {
+	private static func getCommits(for user: String, _ repo: String, _ branch: String?) async -> Result<[CommitData], Error> {
 		let decoder = JSONDecoder()
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -79,9 +79,10 @@ struct CommitsFetcher {
 	/// - Parameters:
 	///   - user: String with GitHub username
 	///   - repo: String with GitHub repository name
+	///   - branch: String with GitHub branch name
 	/// - Returns: List of commits creation dates if request succeeds, otherwise error
-	static func getCommitsDates(_ user: String, _ repo: String) async ->  Result<[Date], Error> {
-		let fetchedData = await getCommits(for: user, repo)
+	static func getCommitsDates(_ user: String, _ repo: String, _ branch: String? = nil) async ->  Result<[Date], Error> {
+		let fetchedData = await getCommits(for: user, repo, branch)
 		
 		switch fetchedData {
 		case .success(let success):
