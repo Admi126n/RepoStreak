@@ -14,30 +14,34 @@ struct ContentView: View {
 	
 	var body: some View {
 		NavigationStack {
-			VStack {
-				Spacer()
-				
-				MainRepoView(
-					streakDuration: contentViewModel.repositoriesData.mainDuration,
-					pushedToday: contentViewModel.repositoriesData.mainExtended
-				)
-				
-				Spacer()
-				
-				if let reposList = contentViewModel.repositoriesData.reposList {
+			GeometryReader { geo in
+				VStack {
+					Spacer()
+					
+					MainRepoView(
+						streakDuration: contentViewModel.repositoriesData.mainDuration,
+						pushedToday: contentViewModel.repositoriesData.mainExtended
+					)
+					.frame(maxWidth: .infinity, maxHeight: 50)
+					
+					Spacer()
+					
 					ScrollView {
-						ForEach(reposList, id: \.name) { repo in
-							RepoCellView(
-								name: repo.name,
-								streakDuration: repo.duration,
-								pushedToday: repo.extended
-							)
+						VStack {
+							ForEach(contentViewModel.reposList, id: \.name) { repo in
+								RepoCellView(
+									name: repo.name,
+									streakDuration: repo.duration,
+									pushedToday: repo.extended
+								)
+							}
 						}
+						.rotationEffect(Angle(degrees: 180))
 					}
-					.scrollIndicators(.automatic)
-					.frame(height: 200)
+					.rotationEffect(Angle(degrees: 180))
+					.scrollIndicators(.never)
+					.frame(height: geo.size.height / 3)
 				}
-				
 			}
 			.symbolEffect(.bounce, value: contentViewModel.repositoriesData.mainDuration)
 			.padding()

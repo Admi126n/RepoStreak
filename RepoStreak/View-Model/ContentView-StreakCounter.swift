@@ -17,6 +17,10 @@ extension ContentView {
 		
 		@State private var hapticFeedback = UINotificationFeedbackGenerator()
 		
+		var reposList: [RepoData] {
+			repositoriesData.reposList ?? []
+		}
+		
 		func performURLRequest() async {
 			hapticFeedback.prepare()
 			
