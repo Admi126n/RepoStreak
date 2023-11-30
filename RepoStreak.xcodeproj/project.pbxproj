@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6626696F2B0BB13C00B64490 /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */; };
 		664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC1CC32AF44C8B0064D16A /* RepoStreakWidget.swift */; };
+		664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6054C2B16643500C26F30 /* CommitsFetcher.swift */; };
+		664D49962B179B250054055E /* BranchesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664D49952B179B250054055E /* BranchesFetcher.swift */; };
 		666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */; };
 		666BC71D2AFEEAEE0092E4BF /* MediumSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */; };
 		666BC71E2AFEEAF00092E4BF /* LargeSizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */; };
@@ -39,6 +41,12 @@
 		66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC1CC12AF44C8B0064D16A /* RepoStreakWidgetBundle.swift */; };
 		66AC1CC62AF44C8D0064D16A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66AC1CC52AF44C8D0064D16A /* Assets.xcassets */; };
 		66AC1CCA2AF44C8D0064D16A /* RepoStreakWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 66AC1CBA2AF44C8B0064D16A /* RepoStreakWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		66B6054A2B16632600C26F30 /* URL+fetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B605492B16632600C26F30 /* URL+fetchData.swift */; };
+		66B6054B2B1663E500C26F30 /* URL+fetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B605492B16632600C26F30 /* URL+fetchData.swift */; };
+		66B6054D2B16643500C26F30 /* CommitsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6054C2B16643500C26F30 /* CommitsFetcher.swift */; };
+		66D0432D2B18E72F000C01B3 /* FetchingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0432C2B18E72F000C01B3 /* FetchingType.swift */; };
+		66D0432E2B18E971000C01B3 /* FetchingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D0432C2B18E72F000C01B3 /* FetchingType.swift */; };
+		66FAE30B2B18F45C00C69561 /* BranchesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664D49952B179B250054055E /* BranchesFetcher.swift */; };
 		66FD92AE2AF30B8300EFA10E /* ContentView-StreakCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD92AD2AF30B8300EFA10E /* ContentView-StreakCounter.swift */; };
 		66FD92B02AF30B9700EFA10E /* SettingsView-ReposFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD92AF2AF30B9700EFA10E /* SettingsView-ReposFetcher.swift */; };
 /* End PBXBuildFile section */
@@ -76,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
+		664D49952B179B250054055E /* BranchesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesFetcher.swift; sourceTree = "<group>"; };
 		666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumSizeView.swift; sourceTree = "<group>"; };
 		666BC7152AFEE9A40092E4BF /* SmallSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSizeView.swift; sourceTree = "<group>"; };
 		666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSizeView.swift; sourceTree = "<group>"; };
@@ -105,6 +114,9 @@
 		66AC1CC32AF44C8B0064D16A /* RepoStreakWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoStreakWidget.swift; sourceTree = "<group>"; };
 		66AC1CC52AF44C8D0064D16A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66AC1CC72AF44C8D0064D16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66B605492B16632600C26F30 /* URL+fetchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+fetchData.swift"; sourceTree = "<group>"; };
+		66B6054C2B16643500C26F30 /* CommitsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsFetcher.swift; sourceTree = "<group>"; };
+		66D0432C2B18E72F000C01B3 /* FetchingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingType.swift; sourceTree = "<group>"; };
 		66FD92AD2AF30B8300EFA10E /* ContentView-StreakCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-StreakCounter.swift"; sourceTree = "<group>"; };
 		66FD92AF2AF30B9700EFA10E /* SettingsView-ReposFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView-ReposFetcher.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +148,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		664D49942B179AD50054055E /* Fetchers */ = {
+			isa = PBXGroup;
+			children = (
+				664D49952B179B250054055E /* BranchesFetcher.swift */,
+				66B6054C2B16643500C26F30 /* CommitsFetcher.swift */,
+				669EAB1E2ACC523300367872 /* ReposFetcher.swift */,
+			);
+			path = Fetchers;
+			sourceTree = "<group>";
+		};
 		666BC7202AFEF00B0092E4BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,10 +194,10 @@
 		666D72552AC0694D004DD77A /* RepoStreak */ = {
 			isa = PBXGroup;
 			children = (
-				667A7B402AF5951E0003C852 /* RepoStreak.entitlements */,
-				66FD92AB2AF30B3900EFA10E /* Model */,
-				66A6A0C92B07975200DCC638 /* Localization */,
 				666D72562AC0694D004DD77A /* RepoStreakApp.swift */,
+				667A7B402AF5951E0003C852 /* RepoStreak.entitlements */,
+				66A6A0C92B07975200DCC638 /* Localization */,
+				66FD92AB2AF30B3900EFA10E /* Model */,
 				66FD92AA2AF30B2500EFA10E /* View */,
 				66FD92AC2AF30B4B00EFA10E /* View-Model */,
 				666D725A2AC0694E004DD77A /* Assets.xcassets */,
@@ -245,10 +267,12 @@
 		66FD92AB2AF30B3900EFA10E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				664D49942B179AD50054055E /* Fetchers */,
+				66B605492B16632600C26F30 /* URL+fetchData.swift */,
 				6687B34A2AC8B24000C28BB3 /* UserSettings.swift */,
 				6687B3592AC8C2B700C28BB3 /* StreakCounter.swift */,
-				669EAB1E2ACC523300367872 /* ReposFetcher.swift */,
 				666D72B82AC0AECD004DD77A /* ValidatorErrors.swift */,
+				66D0432C2B18E72F000C01B3 /* FetchingType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,16 +422,20 @@
 			files = (
 				6687B3492AC8AB3100C28BB3 /* SettingsView.swift in Sources */,
 				6687B35A2AC8C2B700C28BB3 /* StreakCounter.swift in Sources */,
+				66D0432D2B18E72F000C01B3 /* FetchingType.swift in Sources */,
 				66A6A0CB2B07978000DCC638 /* Internationalizations.swift in Sources */,
 				66FD92B02AF30B9700EFA10E /* SettingsView-ReposFetcher.swift in Sources */,
+				66B6054D2B16643500C26F30 /* CommitsFetcher.swift in Sources */,
 				66AC1CB32AF4331F0064D16A /* MainRepoView.swift in Sources */,
 				666D72592AC0694D004DD77A /* ContentView.swift in Sources */,
 				666D72572AC0694D004DD77A /* RepoStreakApp.swift in Sources */,
 				666D72B92AC0AECD004DD77A /* ValidatorErrors.swift in Sources */,
 				6687B34B2AC8B24000C28BB3 /* UserSettings.swift in Sources */,
 				669EAB1F2ACC523300367872 /* ReposFetcher.swift in Sources */,
+				664D49962B179B250054055E /* BranchesFetcher.swift in Sources */,
 				66FD92AE2AF30B8300EFA10E /* ContentView-StreakCounter.swift in Sources */,
 				66AC1CB52AF4338F0064D16A /* RepoCellView.swift in Sources */,
+				66B6054A2B16632600C26F30 /* URL+fetchData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +456,10 @@
 				664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */,
 				666BC71C2AFEEA540092E4BF /* SmallSizeView.swift in Sources */,
 				667A7B3F2AF594580003C852 /* UserSettings.swift in Sources */,
+				66D0432E2B18E971000C01B3 /* FetchingType.swift in Sources */,
+				664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */,
 				666BC7232AFEF1030092E4BF /* MainRepoWidget.swift in Sources */,
+				66FAE30B2B18F45C00C69561 /* BranchesFetcher.swift in Sources */,
 				66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */,
 				667A7B3E2AF594540003C852 /* StreakCounter.swift in Sources */,
 				667A7B3C2AF5944D0003C852 /* ValidatorErrors.swift in Sources */,
@@ -436,6 +467,7 @@
 				667A7B3D2AF594520003C852 /* ReposFetcher.swift in Sources */,
 				6626696F2B0BB13C00B64490 /* LockScreenWidget.swift in Sources */,
 				66A6A0CC2B07978000DCC638 /* Internationalizations.swift in Sources */,
+				66B6054B2B1663E500C26F30 /* URL+fetchData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@ import SwiftUI
 extension ContentView {
 	@MainActor class ContentViewModel: ObservableObject {
 		@Published private(set) var repositoriesData = RepositoriesData()
-		@Published private(set) var userSettings = UserSettings()
+		@Published private(set) var userSettings = UserSettings.shared
 		
 		@Published var showAlert = false
 		@Published var showSheet = false
@@ -20,15 +20,7 @@ extension ContentView {
 		func performURLRequest() async {
 			hapticFeedback.prepare()
 			
-			let tempData = await StreakCounter.checkStreakForReposList(
-				user: userSettings.username,
-				mainRepo: userSettings.mainRepository
-			) {
-				print($0.localizedDescription)
-				showAlert = true
-				hapticFeedback.notificationOccurred(.error)
-				return
-			}
+			let tempData = await StreakCounter.checkStreak(for: userSettings.username)
 			
 			Task { @MainActor in
 				withAnimation {

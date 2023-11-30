@@ -28,6 +28,23 @@
         }
       }
     },
+    "all.branches" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From all branches"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ze wszystkich gałęzi"
+          }
+        }
+      }
+    },
     "configuration.display.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -41,6 +58,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Widżet RepoStreak"
+          }
+        }
+      }
+    },
+    "default.branch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From only default branch"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tylko z głównej gałęzi"
+          }
+        }
+      }
+    },
+    "fetching.type" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to fetch commits?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jak pobierać commity?"
           }
         }
       }

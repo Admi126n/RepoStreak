@@ -32,6 +32,15 @@ struct SettingsView: View {
                     }
                 }
                 
+				Picker(selection: $userSettings.fetchingType) {
+					ForEach(FetchingType.allCases, id: \.self) {
+						Text($0.description)
+					}
+				} label: {
+					Text(I18n.fetchingType)
+				}
+				.pickerStyle(.inline)
+				
 				Picker(selection: $userSettings.mainRepository) {
 					ForEach(settingsViewModel.repositories, id: \.self) {
                         Text($0)
@@ -56,5 +65,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-	SettingsView(userSettings: UserSettings()) { }
+	SettingsView(userSettings: UserSettings.shared) { }
 }
