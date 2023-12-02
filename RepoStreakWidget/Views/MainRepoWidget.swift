@@ -22,7 +22,7 @@ struct MainRepoWidget: View {
 					.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
 			}
 			
-			Text(entry.repoData.mainExtended ? I18n.streakExtended : I18n.streakNotExtended)
+			Text(entry.repoData.mainExtended ? "Coding done for today!" : "Go code!")
 				.font(.headline)
 				.foregroundStyle(entry.repoData.mainExtended ? .green : .red)
 				.multilineTextAlignment(.center)

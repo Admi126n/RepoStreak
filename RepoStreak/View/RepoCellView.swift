@@ -35,6 +35,9 @@ struct RepoCellView: View {
 			}
 			.padding(.horizontal)
 		}
+		.accessibilityElement(children: .combine)
+		.accessibilityLabel("\(name), streak of \(streakDuration) days")
+		.accessibilityHint(pushedToday ? I18n.streakExtended : I18n.streakNotExtended)
 	}
 }
 

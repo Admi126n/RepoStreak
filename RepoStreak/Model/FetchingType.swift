@@ -17,9 +17,9 @@ enum FetchingType: CaseIterable, Codable, CustomStringConvertible {
 	var description: String {
 		switch self {
 		case .defaultBranch:
-			I18n.defaultBranch
+			"From only default branch"
 		case .allBranches:
-			I18n.allBranches
+			"From all branches"
 		}
 	}
 }

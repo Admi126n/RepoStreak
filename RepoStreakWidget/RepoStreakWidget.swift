@@ -65,7 +65,7 @@ struct RepoStreakWidgetEntryView : View {
 		case .accessoryCircular:
 			LockScreenWidget(entry: entry)
 		default:
-			Text(I18n.notImplemented)
+			Text("Not implemented")
 		}
 	}
 }
@@ -86,8 +86,8 @@ struct RepoStreakWidget: Widget {
 			}
 		}
 		.supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryCircular])
-		.configurationDisplayName(I18n.configurationDisplayName)
-		.description(I18n.widgetDescription)
+		.configurationDisplayName("RepoStreak widget")
+		.description("This is an example widget")
 	}
 }
 

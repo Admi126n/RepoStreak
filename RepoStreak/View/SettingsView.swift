@@ -17,8 +17,8 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-				Section(I18n.username) {
-					TextField(I18n.username, text: Binding(
+				Section("Username") {
+					TextField("Username", text: Binding(
                         get: {
 							userSettings.username
                         }, set: {
@@ -37,7 +37,7 @@ struct SettingsView: View {
 						Text($0.description)
 					}
 				} label: {
-					Text(I18n.fetchingType)
+					Text("How to fetch commits?")
 				}
 				.pickerStyle(.inline)
 				
@@ -46,21 +46,21 @@ struct SettingsView: View {
                         Text($0)
                     }
                 } label: {
-					Text(I18n.mainRepository)
+					Text("Main repository")
                 }
                 .pickerStyle(.inline)
             }
             .preferredColorScheme(.dark)
-			.navigationTitle(I18n.settings)
+			.navigationTitle("Settings")
             .toolbar {
-				Button(I18n.save) {
+				Button("Save") {
 					onSave()
 					dismiss()
                 }
             }
         }
         .task { await settingsViewModel.performURLRequest() }
-		.alert(I18n.alertTitle, isPresented: $settingsViewModel.showAlert) { }
+		.alert("Something went wrong.", isPresented: $settingsViewModel.showAlert) { }
     }
 }
 

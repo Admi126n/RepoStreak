@@ -19,6 +19,7 @@ struct ContentView: View {
 					Spacer()
 					
 					MainRepoView(
+						name: contentViewModel.repositoriesData.mainRepoName,
 						streakDuration: contentViewModel.repositoriesData.mainDuration,
 						pushedToday: contentViewModel.repositoriesData.mainExtended
 					)
@@ -52,6 +53,7 @@ struct ContentView: View {
 					} label: {
 						Image(systemName: "gearshape")
 					}
+					.accessibilityLabel("Settings")
 				}
 				
 				ToolbarItem(placement: .topBarTrailing) {
@@ -62,12 +64,13 @@ struct ContentView: View {
 					} label: {
 						Image(systemName: "arrow.clockwise")
 					}
+					.accessibilityLabel("Refresh")
 				}
 			}
 		}
 		.preferredColorScheme(.dark)
 		.task { await contentViewModel.performURLRequest() }
-		.alert(I18n.alertTitle, isPresented: $contentViewModel.showAlert) { }
+		.alert("Something went wrong.", isPresented: $contentViewModel.showAlert) { }
 		.sheet(isPresented: $contentViewModel.showSheet) {
 			SettingsView(userSettings: contentViewModel.userSettings) {
 				Task {

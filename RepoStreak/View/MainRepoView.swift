@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MainRepoView: View {
+	let name: String
 	let streakDuration: Int
 	let pushedToday: Bool
 	
 	var body: some View {
-		Group {
+		VStack {
 			HStack(spacing: 25) {
 				Image(systemName: "flame")
 					.font(.system(size: 70))
@@ -23,13 +24,16 @@ struct MainRepoView: View {
 					.foregroundStyle(pushedToday ? .orange : .gray)
 			}
 			
-			Text(pushedToday ? I18n.streakExtended : I18n.streakNotExtended)
+			Text(pushedToday ? "Coding done for today!" : "Go code!")
 				.font(.title)
 				.foregroundStyle(pushedToday ? .green : .red)
 		}
+		.accessibilityElement(children: .combine)
+		.accessibilityLabel("\(name), streak of \(streakDuration) days")
+		.accessibilityHint(pushedToday ? I18n.streakExtended : I18n.streakNotExtended)
 	}
 }
 
 #Preview {
-	MainRepoView(streakDuration: 5, pushedToday: .random())
+	MainRepoView(name: "Example", streakDuration: 5, pushedToday: .random())
 }
