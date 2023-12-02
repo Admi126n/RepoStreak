@@ -16,7 +16,7 @@ struct Provider: TimelineProvider {
 	}
 	
 	func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-		let userSettings = UserSettings.shared
+		let userSettings = UserSettings()
 				
 		Task {
 			let fetchedData = await StreakCounter.checkStreak(for: userSettings.username)
@@ -27,7 +27,7 @@ struct Provider: TimelineProvider {
 	}
 	
 	func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-		let userSettings = UserSettings.shared
+		let userSettings = UserSettings()
 		
 		Task {
 			let fetchedData = await StreakCounter.checkStreak(for: userSettings.username)

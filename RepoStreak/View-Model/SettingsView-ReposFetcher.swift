@@ -17,7 +17,7 @@ extension SettingsView {
 		func performURLRequest() async {
 			hapticFeedback.prepare()
 			
-			let fetchedData = await ReposFetcher.getPublicActiveRepositoriesNames(for: UserSettings.shared.username)
+			let fetchedData = await ReposFetcher.getPublicActiveRepositoriesNames(for: UserSettings().username)
 			
 			switch fetchedData {
 			case .success(let success):

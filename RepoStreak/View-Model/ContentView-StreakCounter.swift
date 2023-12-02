@@ -10,7 +10,7 @@ import SwiftUI
 extension ContentView {
 	@MainActor class ContentViewModel: ObservableObject {
 		@Published private(set) var repositoriesData = RepositoriesData()
-		@Published private(set) var userSettings = UserSettings.shared
+		@Published private(set) var userSettings = UserSettings()
 		
 		@Published var showAlert = false
 		@Published var showSheet = false

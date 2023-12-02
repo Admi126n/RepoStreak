@@ -151,7 +151,7 @@ struct StreakCounter {
 		for repo in reposNames {
 			var commitsDates: [Date] = []
 			
-			switch UserSettings.shared.fetchingType {
+			switch UserSettings().fetchingType {
 			case .defaultBranch:
 				let fetchedData = await CommitsFetcher.getCommitsDates(user, repo)
 				
@@ -167,7 +167,7 @@ struct StreakCounter {
 			
 			let (duration, extended) = countStreak(for: commitsDates)
 			
-			if repo == UserSettings.shared.mainRepository {
+			if repo == UserSettings().mainRepository {
 				reposData.mainRepoName = repo
 				reposData.mainDuration = duration
 				reposData.mainExtended = extended
