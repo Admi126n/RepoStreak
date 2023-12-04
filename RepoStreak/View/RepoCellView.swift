@@ -12,6 +12,8 @@ struct RepoCellView: View {
 	let streakDuration: Int
 	let pushedToday: Bool
 	
+	@Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
+	
 	var body: some View {
 		ZStack {
 			RoundedRectangle(cornerRadius: 25)
@@ -29,9 +31,15 @@ struct RepoCellView: View {
 					.font(.headline)
 					.foregroundStyle(pushedToday ? .orange : .gray)
 				
-				Image(systemName: "flame")
-					.font(.headline)
-					.foregroundStyle(pushedToday ? .orange : .gray)
+				if differentiateWithoutColor && !pushedToday {
+					Image(systemName: "xmark")
+						.font(.headline)
+						.foregroundStyle(.gray)
+				} else {
+					Image(systemName: "flame")
+						.font(.headline)
+						.foregroundStyle(pushedToday ? .orange : .gray)
+				}
 			}
 			.padding(.horizontal)
 		}

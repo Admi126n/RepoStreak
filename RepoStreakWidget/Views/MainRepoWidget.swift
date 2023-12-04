@@ -10,12 +10,22 @@ import SwiftUI
 struct MainRepoWidget: View {
 	var entry: SimpleEntry
 	
+	@Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
+	
 	var body: some View {
 		VStack {
 			HStack(spacing: 10) {
-				Image(systemName: "flame")
-					.font(.largeTitle)
-					.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
+				ZStack {
+					Image(systemName: "flame")
+						.font(.largeTitle)
+						.foregroundStyle(entry.repoData.mainExtended ? .orange : .gray)
+					
+					if differentiateWithoutColor && !entry.repoData.mainExtended {
+						Image(systemName: "xmark")
+							.font(.system(size: 40))
+							.foregroundStyle(.gray)
+					}
+				}
 				
 				Text("\(entry.repoData.mainDuration)")
 					.font(.largeTitle)

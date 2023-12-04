@@ -12,12 +12,22 @@ struct MainRepoView: View {
 	let streakDuration: Int
 	let pushedToday: Bool
 	
+	@Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
+	
 	var body: some View {
 		VStack {
-			HStack(spacing: 25) {
-				Image(systemName: "flame")
-					.font(.system(size: 70))
-					.foregroundStyle(pushedToday ? .orange : .gray)
+			HStack(spacing: 10) {
+				ZStack {
+					Image(systemName: "flame")
+						.font(.system(size: 70))
+						.foregroundStyle(pushedToday ? .orange : .gray)
+					
+					if differentiateWithoutColor && !pushedToday {
+						Image(systemName: "xmark")
+							.font(.system(size: 80))
+							.foregroundStyle(.gray)
+					}
+				}
 				
 				Text("\(streakDuration)")
 					.font(.system(size: 80))

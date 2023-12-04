@@ -10,6 +10,8 @@ import SwiftUI
 struct LargeSizeView: View {
 	var entry: SimpleEntry
 	
+	@Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
+	
 	var body: some View {
 		VStack(spacing: 20) {
 			MainRepoWidget(entry: entry)
@@ -25,9 +27,15 @@ struct LargeSizeView: View {
 					ForEach(reposList.prefix(5), id: \.name) { repo in
 						HStack {
 							HStack(spacing: 3) {
-								Image(systemName: "flame")
-									.font(.body)
-									.foregroundStyle(repo.extended ? .orange : .gray)
+								if differentiateWithoutColor && !repo.extended {
+									Image(systemName: "xmark")
+										.font(.body)
+										.foregroundStyle(.gray)
+								} else {
+									Image(systemName: "flame")
+										.font(.body)
+										.foregroundStyle(repo.extended ? .orange : .gray)
+								}
 								
 								Text("\(repo.duration)")
 									.font(.body)
