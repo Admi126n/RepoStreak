@@ -80,8 +80,12 @@ struct StreakCounter {
 	/// - Returns: Int with streak duration and Bool value with info if streak is extended already
 	///
 	/// If the newest date from `commits` array is from today streak is extended, otherwise is not
+	///
+	/// If there are no commits returns `(0, false)`
 	static func countStreak(for commits: [Date]) -> (streak: Int, extended: Bool) {
 		var commitsDates = reduce(dates: commits)
+		
+		guard commitsDates.count > 0 else { return (0, false) }
 		
 		var tempDay = Date.now
 		var streakDuration = 0
