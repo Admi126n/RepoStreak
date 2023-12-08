@@ -14,6 +14,7 @@ extension ContentView {
 		
 		@Published var showAlert = false
 		@Published var showSheet = false
+		@Published var gettingData = false
 		
 		@State private var hapticFeedback = UINotificationFeedbackGenerator()
 		
@@ -22,6 +23,9 @@ extension ContentView {
 		}
 		
 		func performURLRequest() async {
+			withAnimation {
+				gettingData = true
+			}
 			hapticFeedback.prepare()
 			
 			let tempData = await StreakCounter.checkStreak(for: userSettings.username)
@@ -33,6 +37,9 @@ extension ContentView {
 			}
 			
 			hapticFeedback.notificationOccurred(.success)
+			withAnimation {
+				gettingData = false
+			}
 		}
 	}
 }

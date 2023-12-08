@@ -30,6 +30,7 @@ struct SettingsView: View {
 							await settingsViewModel.performURLRequest()
 						}
                     }
+					.disabled(settingsViewModel.gettingData)
                 }
                 
 				Picker(selection: $userSettings.fetchingType) {
@@ -42,6 +43,10 @@ struct SettingsView: View {
 				.pickerStyle(.inline)
 				
 				Picker(selection: $userSettings.mainRepository) {
+					if settingsViewModel.gettingData {
+						ProgressView()
+					}
+					
 					ForEach(settingsViewModel.repositories, id: \.self) {
                         Text($0)
                     }

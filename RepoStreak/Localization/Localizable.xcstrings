@@ -113,6 +113,16 @@
         }
       }
     },
+    "Downloading data" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pobieranie danych"
+          }
+        }
+      }
+    },
     "Go code!" : {
       "localizations" : {
         "en" : {
