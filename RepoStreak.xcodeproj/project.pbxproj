@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661E1F0F2B23CFA400216CDA /* RepoCellSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E1F0E2B23CFA400216CDA /* RepoCellSymbol.swift */; };
 		6626696F2B0BB13C00B64490 /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */; };
 		664122802AF44E5800900518 /* RepoStreakWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC1CC32AF44C8B0064D16A /* RepoStreakWidget.swift */; };
 		664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6054C2B16643500C26F30 /* CommitsFetcher.swift */; };
@@ -83,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		661E1F0E2B23CFA400216CDA /* RepoCellSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCellSymbol.swift; sourceTree = "<group>"; };
 		6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
 		664D49952B179B250054055E /* BranchesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesFetcher.swift; sourceTree = "<group>"; };
 		666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumSizeView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				666BC7132AFEE98C0092E4BF /* MediumSizeView.swift */,
 				666BC7172AFEE9B00092E4BF /* LargeSizeView.swift */,
 				6626696E2B0BB13C00B64490 /* LockScreenWidget.swift */,
+				661E1F0E2B23CFA400216CDA /* RepoCellSymbol.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				667A7B3F2AF594580003C852 /* UserSettings.swift in Sources */,
 				66D0432E2B18E971000C01B3 /* FetchingType.swift in Sources */,
 				664A768E2B1765E700B49A4E /* CommitsFetcher.swift in Sources */,
+				661E1F0F2B23CFA400216CDA /* RepoCellSymbol.swift in Sources */,
 				666BC7232AFEF1030092E4BF /* MainRepoWidget.swift in Sources */,
 				66FAE30B2B18F45C00C69561 /* BranchesFetcher.swift in Sources */,
 				66AC1CC22AF44C8B0064D16A /* RepoStreakWidgetBundle.swift in Sources */,

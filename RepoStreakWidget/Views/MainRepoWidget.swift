@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct MainRepoWidget: View {
 	var entry: SimpleEntry
@@ -33,9 +34,21 @@ struct MainRepoWidget: View {
 			}
 			
 			Text(entry.repoData.mainExtended ? "Coding done for today!" : "Go code!")
+				.fontDesign(.serif)
 				.font(.headline)
 				.foregroundStyle(entry.repoData.mainExtended ? .green : .red)
 				.multilineTextAlignment(.center)
 		}
+	}
+}
+
+
+struct MainRepoWidgetPreviews: PreviewProvider {
+	static var previews: some View {
+		VStack {
+			MainRepoWidget(entry: SimpleEntry(date: .now, repoData: RepositoriesData.example))
+		}
+		.previewContext(WidgetPreviewContext(family: .systemSmall))
+		.containerBackground(.background, for: .widget)
 	}
 }

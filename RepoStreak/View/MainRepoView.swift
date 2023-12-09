@@ -34,7 +34,12 @@ struct MainRepoView: View {
 					.foregroundStyle(pushedToday ? .orange : .gray)
 			}
 			
+			Text(name)
+				.font(.headline)
+				.foregroundStyle(.gray)
+			
 			Text(pushedToday ? "Coding done for today!" : "Go code!")
+				.fontDesign(.serif)
 				.font(.title)
 				.foregroundStyle(pushedToday ? .green : .red)
 		}

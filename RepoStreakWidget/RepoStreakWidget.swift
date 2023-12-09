@@ -33,7 +33,7 @@ struct Provider: TimelineProvider {
 			let fetchedData = await StreakCounter.checkStreak(for: userSettings.username)
 			
 			let entry = SimpleEntry(date: .now, repoData: fetchedData)
-			let timeline = Timeline(entries: [entry], policy: .after(.now.advanced(by: 10)))
+			let timeline = Timeline(entries: [entry], policy: .after(.now.advanced(by: 60 * 15)))
 			
 			completion(timeline)
 		}

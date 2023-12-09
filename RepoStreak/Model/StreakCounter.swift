@@ -19,6 +19,24 @@ struct RepositoriesData {
 		self.mainDuration = 0
 		self.mainExtended = false
 	}
+	
+	private init(name: String, duration: Int, extended: Bool, reposList: [RepoData]) {
+		self.mainRepoName = name
+		self.mainDuration = duration
+		self.mainExtended = extended
+		self.reposList = reposList
+	}
+	
+	static let example = RepositoriesData(name: "Example",
+										  duration: 10,
+										  extended: true,
+										  reposList: [RepoData(name: "Example 1", duration: 1, extended: true),
+													  RepoData(name: "Example 2", duration: 4, extended: false),
+													  RepoData(name: "Example 3", duration: 4, extended: false),
+													  RepoData(name: "Example 4", duration: 4, extended: true),
+													  RepoData(name: "Example 5", duration: 4, extended: false),
+													  RepoData(name: "Example 6", duration: 4, extended: true)]
+	)
 }
 
 struct RepoData {

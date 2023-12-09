@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct MediumSizeView: View {
 	var entry: SimpleEntry
@@ -13,38 +14,43 @@ struct MediumSizeView: View {
 	@Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
 	
 	var body: some View {
-		HStack(spacing: 20) {
-			MainRepoWidget(entry: entry)
-			
-			RoundedRectangle(cornerRadius: 25)
-				.frame(width: 3)
-				.foregroundStyle(.secondary)
-			
-			if let reposList = entry.repoData.reposList {
-				VStack(alignment: .leading) {
-					Spacer()
-					
-					ForEach(reposList.prefix(5), id: \.name) { repo in
-						HStack {
-							if differentiateWithoutColor && !repo.extended {
-								Image(systemName: "xmark")
+		GeometryReader { geo in
+			HStack(spacing: 15) {
+				MainRepoWidget(entry: entry)
+					.frame(maxWidth: geo.size.width / 3, maxHeight: .infinity)
+				
+				RoundedRectangle(cornerRadius: 25)
+					.frame(width: 3)
+					.foregroundStyle(.secondary)
+				
+				if let reposList = entry.repoData.reposList {
+					VStack(alignment: .leading) {
+						Spacer()
+						
+						ForEach(reposList.prefix(4), id: \.name) { repo in
+							HStack {
+								RepoCellSymbol(repo, differentiateWithoutColor)
+								
+								Text(repo.name)
 									.font(.caption)
-									.foregroundStyle(.gray)
-							} else {
-								Image(systemName: "flame")
-									.font(.caption)
-									.foregroundStyle(repo.extended ? .orange : .gray)
+									.foregroundStyle(repo.extended ? .green : .red)
 							}
 							
-							Text(repo.name)
-								.font(.caption)
-								.foregroundStyle(repo.extended ? .green : .red)
+							Spacer()
 						}
-						
-						Spacer()
 					}
 				}
 			}
 		}
+	}
+}
+
+struct MediumSizeViewPreviews: PreviewProvider {
+	static var previews: some View {
+		VStack {
+			MediumSizeView(entry: SimpleEntry(date: .now, repoData: RepositoriesData.example))
+		}
+		.previewContext(WidgetPreviewContext(family: .systemMedium))
+		.containerBackground(.background, for: .widget)
 	}
 }
