@@ -80,6 +80,7 @@ struct ContentView: View {
 				}
 			}
 		}
+		.tint(.orange)
 		.preferredColorScheme(.dark)
 		.task { await contentViewModel.performURLRequest() }
 		.alert("Something went wrong.", isPresented: $contentViewModel.showAlert) { }

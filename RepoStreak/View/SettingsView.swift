@@ -64,6 +64,7 @@ struct SettingsView: View {
                 }
             }
         }
+		.tint(.orange)
         .task { await settingsViewModel.performURLRequest() }
 		.alert("Something went wrong.", isPresented: $settingsViewModel.showAlert) { }
     }
