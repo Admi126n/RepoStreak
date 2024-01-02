@@ -16,7 +16,7 @@ struct Provider: TimelineProvider {
 	}
 	
 	func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-		let userSettings = UserSettings.shared
+		let userSettings = UserSettings()
 				
 		Task {
 			let fetchedData = await StreakCounter.checkStreak(for: userSettings.username)
@@ -27,13 +27,13 @@ struct Provider: TimelineProvider {
 	}
 	
 	func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-		let userSettings = UserSettings.shared
+		let userSettings = UserSettings()
 		
 		Task {
 			let fetchedData = await StreakCounter.checkStreak(for: userSettings.username)
 			
 			let entry = SimpleEntry(date: .now, repoData: fetchedData)
-			let timeline = Timeline(entries: [entry], policy: .after(.now.advanced(by: 10)))
+			let timeline = Timeline(entries: [entry], policy: .after(.now.advanced(by: 60 * 15)))
 			
 			completion(timeline)
 		}
@@ -65,7 +65,7 @@ struct RepoStreakWidgetEntryView : View {
 		case .accessoryCircular:
 			LockScreenWidget(entry: entry)
 		default:
-			Text(I18n.notImplemented)
+			Text("Not implemented")
 		}
 	}
 }
@@ -86,8 +86,8 @@ struct RepoStreakWidget: Widget {
 			}
 		}
 		.supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryCircular])
-		.configurationDisplayName(I18n.configurationDisplayName)
-		.description(I18n.widgetDescription)
+		.configurationDisplayName("RepoStreak widget")
+		.description("This is an example widget")
 	}
 }
 

@@ -14,9 +14,7 @@ fileprivate enum UserDefaultsKeys: String {
 }
 
 class UserSettings: ObservableObject {
-	private let suiteName = "group.com.admi126n.RepoStreak"
-	
-	static let shared = UserSettings()
+	private let suiteName = "group.com.admi126n.dev.RepoStreak"
 	
 	@Published var username: String {
         didSet {
@@ -38,7 +36,7 @@ class UserSettings: ObservableObject {
 		}
 	}
 	
-    private init() {
+    init() {
         if let safeUsername = UserDefaults(suiteName: suiteName)?.string(forKey: UserDefaultsKeys.username.rawValue) {
             username = safeUsername
         } else {

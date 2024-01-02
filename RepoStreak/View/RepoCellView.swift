@@ -12,29 +12,37 @@ struct RepoCellView: View {
 	let streakDuration: Int
 	let pushedToday: Bool
 	
+	@Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
+	
 	var body: some View {
-		ZStack {
-			RoundedRectangle(cornerRadius: 25)
-				.frame(height: 30)
-				.foregroundStyle(Color(white: 0.15))
+		HStack {
+			Text(name)
+				.font(.headline)
+				.foregroundStyle(pushedToday ? .green : .red)
 			
-			HStack {
-				Text(name)
+			Spacer()
+			
+			Text("\(streakDuration)")
+				.font(.headline)
+				.foregroundStyle(pushedToday ? .orange : .gray)
+			
+			if differentiateWithoutColor && !pushedToday {
+				Image(systemName: "xmark")
 					.font(.headline)
-					.foregroundStyle(pushedToday ? .green : .red)
-				
-				Spacer()
-				
-				Text("\(streakDuration)")
-					.font(.headline)
-					.foregroundStyle(pushedToday ? .orange : .gray)
-				
+					.foregroundStyle(.gray)
+			} else {
 				Image(systemName: "flame")
 					.font(.headline)
 					.foregroundStyle(pushedToday ? .orange : .gray)
 			}
-			.padding(.horizontal)
 		}
+		.padding(.horizontal)
+		.padding(.vertical, 5)
+		.background(Color(white: 0.15))
+		.clipShape(.rect(cornerRadius: 25))
+		.accessibilityElement(children: .combine)
+		.accessibilityLabel("\(name), streak of \(streakDuration) days")
+		.accessibilityHint(pushedToday ? I18n.streakExtended : I18n.streakNotExtended)
 	}
 }
 

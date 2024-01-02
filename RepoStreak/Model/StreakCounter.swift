@@ -19,6 +19,24 @@ struct RepositoriesData {
 		self.mainDuration = 0
 		self.mainExtended = false
 	}
+	
+	private init(name: String, duration: Int, extended: Bool, reposList: [RepoData]) {
+		self.mainRepoName = name
+		self.mainDuration = duration
+		self.mainExtended = extended
+		self.reposList = reposList
+	}
+	
+	static let example = RepositoriesData(name: "Example",
+										  duration: 10,
+										  extended: true,
+										  reposList: [RepoData(name: "Example 1", duration: 1, extended: true),
+													  RepoData(name: "Example 2", duration: 4, extended: false),
+													  RepoData(name: "Example 3", duration: 4, extended: false),
+													  RepoData(name: "Example 4", duration: 4, extended: true),
+													  RepoData(name: "Example 5", duration: 4, extended: false),
+													  RepoData(name: "Example 6", duration: 4, extended: true)]
+	)
 }
 
 struct RepoData {
@@ -80,8 +98,12 @@ struct StreakCounter {
 	/// - Returns: Int with streak duration and Bool value with info if streak is extended already
 	///
 	/// If the newest date from `commits` array is from today streak is extended, otherwise is not
+	///
+	/// If there are no commits returns `(0, false)`
 	static func countStreak(for commits: [Date]) -> (streak: Int, extended: Bool) {
 		var commitsDates = reduce(dates: commits)
+		
+		guard commitsDates.count > 0 else { return (0, false) }
 		
 		var tempDay = Date.now
 		var streakDuration = 0
@@ -151,7 +173,7 @@ struct StreakCounter {
 		for repo in reposNames {
 			var commitsDates: [Date] = []
 			
-			switch UserSettings.shared.fetchingType {
+			switch UserSettings().fetchingType {
 			case .defaultBranch:
 				let fetchedData = await CommitsFetcher.getCommitsDates(user, repo)
 				
@@ -167,7 +189,7 @@ struct StreakCounter {
 			
 			let (duration, extended) = countStreak(for: commitsDates)
 			
-			if repo == UserSettings.shared.mainRepository {
+			if repo == UserSettings().mainRepository {
 				reposData.mainRepoName = repo
 				reposData.mainDuration = duration
 				reposData.mainExtended = extended
