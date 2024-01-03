@@ -2,6 +2,8 @@
 
 With this app you can track commits streak on your public GitHub repositories. All you need to do is provide your username and choose main repository.
 
+App has support for dynamic type and for colorblindness.
+
 ## Main screen
 
 Here at the middle of the screen you can see your main reporitory streak and at the bottom all other repositories.
@@ -20,7 +22,7 @@ Here you provide your username and choose main repository.
 
 ## Widgets
 
-There are also available widgets in three sizes.
+There are also available widgets in three sizes and lock screen widget.
 
 |Small|Medium|Large|
 |:-------------:|:-------------:|:-------------:|
@@ -31,4 +33,4 @@ There are also available widgets in three sizes.
 
 I've created this app because of 100 Days Of SwiftUI, to remind me about coding every day.
 
-I'd like to add notifications which will notify user every evening if main repository streak isn't extended and maybe also lock screen widget.
+I'd like to add notifications which will notify user every evening if main repository streak isn't extended.
