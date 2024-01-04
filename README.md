@@ -33,4 +33,4 @@ There are also available widgets in three sizes and lock screen widget.
 
 I've created this app because of 100 Days Of SwiftUI, to remind me about coding every day.
 
-I'd like to add notifications which will notify user every evening if main repository streak isn't extended.
+App can't be published on the App Store because it's not useful enough.
